@@ -19,7 +19,7 @@ sudo apt install firefox -y
 echo 'Unattended-Upgrade::Allowed-Origins:: "LP-PPA-mozillateam:$(lsb_release -cs)";' | sudo tee /etc/apt/apt.conf.d/51unattended-upgrades-firefox
 ```
 
-### Notes
+### Fcitx5
 
 Fcitx5 input method doesn't work with the `.deb` version of Firefox provided by `ppa:mozillateam/ppa`.
 

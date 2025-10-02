@@ -18,14 +18,13 @@ sudo rm -f /etc/apparmor.d/local/usr.bin.firefox
 sudo systemctl stop var-snap-firefox-common-*.mount 2>/dev/null || true
 sudo systemctl disable var-snap-firefox-common-*.mount 2>/dev/null || true
 sudo snap remove --purge firefox || true
-sudo apt install firefox -y
+sudo apt install firefox --allow-downgrades -y
 echo 'Unattended-Upgrade::Allowed-Origins:: "LP-PPA-mozillateam:$(lsb_release -cs)";' | sudo tee /etc/apt/apt.conf.d/51unattended-upgrades-firefox
 ```
 
-### Script to Undo These Changes and Switch Firefox Back to Snap
+### Script to Switch Firefox Back to Snap
 
 ```
-sudo add-apt-repository -r ppa:mozillateam/ppa
 sudo rm -rf /etc/apt/preferences.d/mozilla-firefox
 sudo apt remove firefox
 sudo snap install firefox
@@ -47,17 +46,22 @@ sudo rm -f /etc/apparmor.d/local/usr.bin.thunderbird
 sudo systemctl stop var-snap-thunderbird-common-*.mount 2>/dev/null || true
 sudo systemctl disable var-snap-thunderbird-common-*.mount 2>/dev/null || true
 sudo snap remove --purge firefox || true
-sudo apt install thunderbird -y
+sudo apt install thunderbird --allow-downgrades -y
 echo 'Unattended-Upgrade::Allowed-Origins:: "LP-PPA-mozillateam:$(lsb_release -cs)";' | sudo tee /etc/apt/apt.conf.d/51unattended-upgrades-thunderbird
 ```
 
-### Script to Undo These Changes and Switch Thunderbird Back to Snap
+### Script to Switch Thunderbird Back to Snap
 
 ```
-sudo add-apt-repository -r ppa:mozillateam/ppa
 sudo rm -rf /etc/apt/preferences.d/thunderbird
 sudo apt remove thunderbird
 sudo snap install thunderbird
+```
+
+### Remove Mozillateam PPA
+
+```
+sudo add-apt-repository -r ppa:mozillateam/ppa
 ```
 
 ### Fix for Fcitx5 not Working on Firefox on KDE Plasma

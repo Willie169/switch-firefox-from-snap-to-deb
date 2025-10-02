@@ -67,10 +67,10 @@ sudo add-apt-repository -r ppa:mozillateam/ppa
 ### Fix for Fcitx5 not Working on Firefox on KDE Plasma
 
 ```
-sudo ln -s /etc/apparmor.d/usr.bin.firefox /etc/apparmor.d/disable/
-sudo apparmor_parser -R /etc/apparmor.d/usr.bin.firefox
+sudo ln -s /etc/apparmor.d/firefox /etc/apparmor.d/disable/
+sudo apparmor_parser -R /etc/apparmor.d/firefox
 sudo apt update
-sudo apt install kde-config-fcitx -y
+sudo apt install kde-config-fcitx5 -y
 ```
 
 ### Sources

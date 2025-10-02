@@ -1,6 +1,6 @@
 ## switch-firefox-from-snap-to-deb
 
-Scripts to switch Firefox and Thunderbird from Snap to `.deb` and fix Fcitx5 not working on Firefox on KDE Plasma.
+Scripts to switch Firefox and Thunderbird from Snap to `.deb` and fix Fcitx5 not working on Firefox from PPA.
 
 ### Script to Switch Firefox from Snap to Deb
 
@@ -64,7 +64,7 @@ sudo snap install thunderbird
 sudo add-apt-repository -r ppa:mozillateam/ppa
 ```
 
-### Fix for Fcitx5 not Working on Firefox on KDE Plasma
+### Fix for Fcitx5 not Working on Firefox from PPA
 
 ```
 sudo ln -s /etc/apparmor.d/firefox /etc/apparmor.d/disable/

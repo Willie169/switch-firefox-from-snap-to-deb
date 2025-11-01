@@ -2,7 +2,37 @@
 
 Scripts to switch Firefox and Thunderbird from Snap to `.deb` and fix Fcitx5 not working on Firefox from PPA.
 
-### Script to Switch Firefox from Snap to Deb
+### Script to Switch from Snap Firefox to Deb Firefox ESR (Recommended)
+
+```
+sudo add-apt-repository ppa:mozillateam/ppa -y
+echo 'Package: *
+Pin: release o=LP-PPA-mozillateam
+Pin-Priority: 1001
+
+Package: *
+Pin: release o=Ubuntu
+Pin-Priority: -1' | sudo tee /etc/apt/preferences.d/mozilla-firefox
+sudo rm -f /etc/apparmor.d/usr.bin.firefox
+sudo rm -f /etc/apparmor.d/local/usr.bin.firefox
+sudo systemctl stop var-snap-firefox-common-*.mount 2>/dev/null || true
+sudo systemctl disable var-snap-firefox-common-*.mount 2>/dev/null || true
+sudo snap remove --purge firefox || true
+sudo apt install firefox-esr --allow-downgrades -y
+echo 'Unattended-Upgrade::Allowed-Origins:: "LP-PPA-mozillateam:$(lsb_release -cs)";' | sudo tee /etc/apt/apt.conf.d/51unattended-upgrades-firefox
+```
+
+### Script to Switch from Deb Firefox ESR Back to Snap Firefox
+
+```
+sudo rm -rf /etc/apt/preferences.d/mozilla-firefox
+sudo apt remove firefox-esr
+sudo snap install firefox
+```
+
+### Script to Switch from Snap Firefox to Deb Firefox
+
+This version of Firefox may contain bugs.
 
 ```
 sudo add-apt-repository ppa:mozillateam/ppa -y
@@ -22,7 +52,7 @@ sudo apt install firefox --allow-downgrades -y
 echo 'Unattended-Upgrade::Allowed-Origins:: "LP-PPA-mozillateam:$(lsb_release -cs)";' | sudo tee /etc/apt/apt.conf.d/51unattended-upgrades-firefox
 ```
 
-### Script to Switch Firefox Back to Snap
+### Script to Switch from Deb Firefox Back to Snap Firefox
 
 ```
 sudo rm -rf /etc/apt/preferences.d/mozilla-firefox
@@ -30,7 +60,7 @@ sudo apt remove firefox
 sudo snap install firefox
 ```
 
-### Script to Switch Thunderbird from Snap to Deb
+### Script to Switch from Snap Thunderbird to Deb Thunderbird
 
 ```
 sudo add-apt-repository ppa:mozillateam/ppa -y
@@ -50,7 +80,7 @@ sudo apt install thunderbird --allow-downgrades -y
 echo 'Unattended-Upgrade::Allowed-Origins:: "LP-PPA-mozillateam:$(lsb_release -cs)";' | sudo tee /etc/apt/apt.conf.d/51unattended-upgrades-thunderbird
 ```
 
-### Script to Switch Thunderbird Back to Snap
+### Script to Switch Deb Thunderbird Back to Snap Thunderbird
 
 ```
 sudo rm -rf /etc/apt/preferences.d/thunderbird
@@ -64,7 +94,7 @@ sudo snap install thunderbird
 sudo add-apt-repository -r ppa:mozillateam/ppa
 ```
 
-### Fix for Fcitx5 not Working on Firefox from PPA
+### Fix for Fcitx5 not Working in Firefox
 
 ```
 sudo ln -s /etc/apparmor.d/firefox /etc/apparmor.d/disable/

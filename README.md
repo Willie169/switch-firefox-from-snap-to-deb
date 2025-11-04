@@ -1,8 +1,8 @@
 ## switch-firefox-from-snap-to-deb
 
-Scripts to switch Firefox and Thunderbird from Snap to `.deb` version from Mozilla Team PPA and fix possible Fcitx5 not working in Firefox from PPA on KDE Plasma.
+Scripts to switch Firefox and Thunderbird from Snap to `.deb` version from Mozilla Team PPA and fix possible Fcitx5 not working in Firefox from PPA.
 
-### Script to Switch from Snap Firefox and Thunderbird to Deb Firefox ESR and Thunderbird, Enable Unattended Upgrade, and Fix Possible Fcitx5 not Working in Firefox if KDE Plasma is Detected
+### Script to Switch from Snap Firefox and Thunderbird to Deb Firefox ESR and Thunderbird, Enable Unattended Upgrade, and Fix Possible Fcitx5 not Working in Firefox from PPA (Recommended)
 
 ```
 sudo add-apt-repository ppa:mozillateam/ppa -y
@@ -26,38 +26,8 @@ sudo systemctl disable var-snap-thunderbird-common-*.mount 2>/dev/null || true
 sudo snap remove --purge thunderbird || true
 sudo apt install thunderbird --allow-downgrades -y
 echo 'Unattended-Upgrade::Allowed-Origins:: "LP-PPA-mozillateam:$(lsb_release -cs)";' | sudo tee /etc/apt/apt.conf.d/51unattended-upgrades-mozilla
-if [ "$XDG_CURRENT_DESKTOP" = "KDE" ] || [ "$DESKTOP_SESSION" = "plasma" ] || [ "$KDE_FULL_SESSION" = "true" ]; then
 sudo ln -sf /etc/apparmor.d/firefox /etc/apparmor.d/disable/
 sudo apparmor_parser -R /etc/apparmor.d/firefox
-sudo apt update
-sudo apt install kde-config-fcitx5 -y
-fi
-```
-
-### Script to Switch from Snap Firefox and Thunderbird to Deb Firefox ESR and Thunderbird and Enable Unattended Upgrade (Recommended for Ubuntu without KDE Plasma, e.g. official Ubuntu)
-
-```
-sudo add-apt-repository ppa:mozillateam/ppa -y
-echo 'Package: *
-Pin: release o=LP-PPA-mozillateam
-Pin-Priority: 1001
-
-Package: *
-Pin: release o=Ubuntu
-Pin-Priority: -1' | sudo tee /etc/apt/preferences.d/mozilla-firefox
-sudo rm -f /etc/apparmor.d/usr.bin.firefox
-sudo rm -f /etc/apparmor.d/local/usr.bin.firefox
-sudo systemctl stop var-snap-firefox-common-*.mount 2>/dev/null || true
-sudo systemctl disable var-snap-firefox-common-*.mount 2>/dev/null || true
-sudo snap remove --purge firefox || true
-sudo apt install firefox-esr --allow-downgrades -y
-sudo rm -f /etc/apparmor.d/usr.bin.thunderbird
-sudo rm -f /etc/apparmor.d/local/usr.bin.thunderbird
-sudo systemctl stop var-snap-thunderbird-common-*.mount 2>/dev/null || true
-sudo systemctl disable var-snap-thunderbird-common-*.mount 2>/dev/null || true
-sudo snap remove --purge thunderbird || true
-sudo apt install thunderbird --allow-downgrades -y
-echo 'Unattended-Upgrade::Allowed-Origins:: "LP-PPA-mozillateam:$(lsb_release -cs)";' | sudo tee /etc/apt/apt.conf.d/51unattended-upgrades-mozilla
 ```
 
 ### Script to Switch from Snap Firefox to Deb Firefox ESR
@@ -159,13 +129,11 @@ sudo rm /etc/apt/apt.conf.d/51unattended-upgrades-mozilla
 sudo add-apt-repository -r ppa:mozillateam/ppa
 ```
 
-### Script to Fix Possible Fcitx5 not Working in Firefox on KDE Plasma
+### Script to Fix Possible Fcitx5 not Working in Firefox from PPA
 
 ```
 sudo ln -sf /etc/apparmor.d/firefox /etc/apparmor.d/disable/
 sudo apparmor_parser -R /etc/apparmor.d/firefox
-sudo apt update
-sudo apt install kde-config-fcitx5 -y
 ```
 
 ### Sources

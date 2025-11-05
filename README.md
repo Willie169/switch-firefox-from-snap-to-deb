@@ -38,7 +38,7 @@ sudo rm -f /etc/apparmor.d/local/usr.bin.firefox
 sudo systemctl stop var-snap-firefox-common-*.mount 2>/dev/null || true
 sudo systemctl disable var-snap-firefox-common-*.mount 2>/dev/null || true
 sudo snap remove --purge firefox || true
-sudo apt remove firefox --purge
+sudo apt remove firefox --purge || true
 sudo apt install firefox-esr --allow-downgrades -y
 sudo rm -f /etc/apparmor.d/usr.bin.thunderbird
 sudo rm -f /etc/apparmor.d/local/usr.bin.thunderbird
@@ -67,7 +67,7 @@ sudo rm -f /etc/apparmor.d/local/usr.bin.firefox
 sudo systemctl stop var-snap-firefox-common-*.mount 2>/dev/null || true
 sudo systemctl disable var-snap-firefox-common-*.mount 2>/dev/null || true
 sudo snap remove --purge firefox || true
-sudo apt remove firefox --purge
+sudo apt remove firefox --purge || true
 sudo apt install firefox-esr --allow-downgrades -y
 ```
 
@@ -87,7 +87,7 @@ sudo rm -f /etc/apparmor.d/local/usr.bin.firefox
 sudo systemctl stop var-snap-firefox-common-*.mount 2>/dev/null || true
 sudo systemctl disable var-snap-firefox-common-*.mount 2>/dev/null || true
 sudo snap remove --purge firefox || true
-sudo apt remove firefox --purge
+sudo apt remove firefox --purge || true
 sudo apt install firefox --allow-downgrades -y
 ```
 

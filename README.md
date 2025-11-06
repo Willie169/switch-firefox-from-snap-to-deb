@@ -38,7 +38,7 @@ sudo rm -f /etc/apparmor.d/local/usr.bin.firefox
 sudo systemctl stop var-snap-firefox-common-*.mount 2>/dev/null || true
 sudo systemctl disable var-snap-firefox-common-*.mount 2>/dev/null || true
 sudo snap remove --purge firefox || true
-sudo apt remove firefox --purge || true
+sudo apt remove firefox --purge -y || true
 sudo apt install firefox-esr --allow-downgrades -y
 sudo rm -f /etc/apparmor.d/usr.bin.thunderbird
 sudo rm -f /etc/apparmor.d/local/usr.bin.thunderbird
@@ -67,7 +67,7 @@ sudo rm -f /etc/apparmor.d/local/usr.bin.firefox
 sudo systemctl stop var-snap-firefox-common-*.mount 2>/dev/null || true
 sudo systemctl disable var-snap-firefox-common-*.mount 2>/dev/null || true
 sudo snap remove --purge firefox || true
-sudo apt remove firefox --purge || true
+sudo apt remove firefox --purge -y || true
 sudo apt install firefox-esr --allow-downgrades -y
 ```
 
@@ -87,7 +87,7 @@ sudo rm -f /etc/apparmor.d/local/usr.bin.firefox
 sudo systemctl stop var-snap-firefox-common-*.mount 2>/dev/null || true
 sudo systemctl disable var-snap-firefox-common-*.mount 2>/dev/null || true
 sudo snap remove --purge firefox || true
-sudo apt remove firefox --purge || true
+sudo apt remove firefox --purge -y || true
 sudo apt install firefox --allow-downgrades -y
 ```
 
@@ -120,7 +120,7 @@ echo 'Unattended-Upgrade::Allowed-Origins:: "LP-PPA-mozillateam:$(lsb_release -c
 
 ```
 sudo rm -rf /etc/apt/preferences.d/mozilla-firefox
-sudo apt remove firefox-esr
+sudo apt remove firefox-esr --purge -y
 sudo snap install firefox
 ```
 
@@ -128,7 +128,7 @@ sudo snap install firefox
 
 ```
 sudo rm -rf /etc/apt/preferences.d/mozilla-firefox
-sudo apt remove firefox
+sudo apt remove firefox --purge -y
 sudo snap install firefox
 ```
 
@@ -136,7 +136,7 @@ sudo snap install firefox
 
 ```
 sudo rm -rf /etc/apt/preferences.d/thunderbird
-sudo apt remove thunderbird
+sudo apt remove thunderbird --purge -y
 sudo snap install thunderbird
 ```
 

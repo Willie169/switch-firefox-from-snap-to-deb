@@ -168,5 +168,5 @@ sudo apparmor_parser -R /etc/apparmor.d/firefox
 ### My Related Repositories
 
 * [**ubuntu-setup-with-vnc-and-gpu**](https://github.com/Willie169/ubuntu-setup-with-vnc-and-gpu)
-* [**dual-boot-windows-ubuntu**](https://github.com/Willie169/dual-boot-windows-ubuntu)
-* [**LinuxAndTermuxTips**](https://github.com/Willie169/LinuxAndTermuxTips)
+* [**https://github.com/Willie169/dual-boot-windows-linux-and-recovery**](https://github.com/Willie169/dual-boot-windows-ubuntu)
+* [**dual-boot-windows-linux-and-recovery**](https://github.com/Willie169/dual-boot-windows-linux-and-recovery)

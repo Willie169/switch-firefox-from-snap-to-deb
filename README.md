@@ -68,6 +68,8 @@ sudo systemctl stop var-snap-firefox-common-*.mount 2>/dev/null || true
 sudo systemctl disable var-snap-firefox-common-*.mount 2>/dev/null || true
 sudo snap remove --purge firefox 2>/dev/null || true
 sudo apt remove firefox --purge -y 2>/dev/null || true
+sudo apt install firefox --allow-downgrades -y
+sudo apt remove firefox --purge -y
 sudo apt install firefox-esr --allow-downgrades -y
 ```
 

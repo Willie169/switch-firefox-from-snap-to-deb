@@ -7,7 +7,7 @@ Scripts to switch Firefox and Thunderbird from Snap to Deb version from Mozilla 
 * [Script to Switch from Snap Firefox and Thunderbird to Deb Firefox ESR and Thunderbird from Mozilla Team PPA, Enable Unattended Upgrade, and Fix Possible Fcitx5 not Working in Firefox from PPA (Recommended)](#script-to-switch-from-snap-firefox-and-thunderbird-to-deb-firefox-esr-and-thunderbird-from-mozilla-team-ppa-enable-unattended-upgrade-and-fix-possible-fcitx5-not-working-in-firefox-from-ppa-recommended)
 * [Install Deb Chromium from XtraDeb PPA and Prevent Snap Chromium From Being Installed (Recommended)](#install-deb-chromium-from-xtradeb-ppa-and-prevent-snap-chromium-from-being-installed-recommended)
 * [Script to Remove Snap, Prevent it From Being Installed, Install Deb Firefox ESR and Thunderbird from Mozilla Team PPA, Enable Unattended Upgrade, and Fix Possible Fcitx5 not Working in Firefox from PPA for Ubuntu with KDE Plasma](#script-to-remove-snap-prevent-it-from-being-installed-install-deb-firefox-esr-and-thunderbird-from-mozilla-team-ppa-enable-unattended-upgrade-and-fix-possible-fcitx5-not-working-in-firefox-from-ppa-for-ubuntu-with-kde-plasma)
-* [Script to Remove Snap and Prevent it From Being Installed](#script-to-remove-snap-and-prevent-it-from-being-installed)
+* [Script to Remove Snap and Prevent it From Being Installed for Ubuntu with KDE Plasma](#script-to-remove-snap-and-prevent-it-from-being-installed-for-ubuntu-with-kde-plasma)
 * [Script to Switch from Snap Firefox to Deb Firefox ESR from Mozilla Team PPA](#script-to-switch-from-snap-firefox-to-deb-firefox-esr-from-mozilla-team-ppa)
 * [Script to Switch from Snap Firefox to Deb Firefox from Mozilla Team PPA](#script-to-switch-from-snap-firefox-to-deb-firefox-from-mozilla-team-ppa)
 * [Script to Switch from Snap Thunderbird to Deb Thunderbird from Mozilla Team PPA](#script-to-switch-from-snap-thunderbird-to-deb-thunderbird-from-mozilla-team-ppa)
@@ -159,7 +159,7 @@ sudo ln -sf /etc/apparmor.d/firefox /etc/apparmor.d/disable/
 sudo apparmor_parser -R /etc/apparmor.d/firefox
 ```
 
-### Script to Remove Snap and Prevent it From Being Installed
+### Script to Remove Snap and Prevent it From Being Installed for Ubuntu with KDE Plasma
 
 **WARNING**: This script is safe to use on Ubuntu with KDE Plasma (such as Kubuntu). For those with GNOME software Center, Snap Store, or other built-in integrations with Snap (such as official Ubuntu from Canonical), further actions may be needed regarding them, and thus use this script only if you are not afraid of troubleshooting the system.
 

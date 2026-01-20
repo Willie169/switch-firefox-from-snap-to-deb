@@ -1,6 +1,6 @@
 ## switch-firefox-from-snap-to-deb
 
-Scripts to switch Firefox and Thunderbird from Snap to Deb version from Mozilla Team PPA, fix possible Fcitx5 not working in Firefox from PPA, remove Snap, prevent it from being installed, etc.
+Scripts to switch Firefox and Thunderbird from Snap to Deb version from Mozilla Team PPA, fix possible Fcitx5 not working in Firefox from PPA, remove Snap and prevent it from being installed, install Deb Chromium from XtraDeb PPA and prevent Snap Chromium from being installed.
 
 ### Table of Contents
 
@@ -17,6 +17,7 @@ Scripts to switch Firefox and Thunderbird from Snap to Deb version from Mozilla 
 * [Script to Disable Unattended Upgrade for Packages from Mozilla Team PPA](#script-to-disable-unattended-upgrade-for-packages-from-mozilla-team-ppa)
 * [Remove Mozilla Team PPA](#remove-mozilla-team-ppa)
 * [Script to Fix Possible Fcitx5 not Working in Firefox from PPA](#script-to-fix-possible-fcitx5-not-working-in-firefox-from-ppa)
+* [Install Deb Chromium from XtraDeb PPA and Prevent Snap Chromium From Being Installed](#install-deb-chromium-from-xtradeb-ppa-and-prevent-snap-chromium-from-being-installed)
 * [References](#references)
 * [My Related Repositories](#my-related-repositories)
 
@@ -308,6 +309,22 @@ sudo add-apt-repository -r ppa:mozillateam/ppa
 sudo ln -sf /etc/apparmor.d/firefox /etc/apparmor.d/disable/
 sudo apparmor_parser -R /etc/apparmor.d/firefox
 ```
+
+### Install Deb Chromium from XtraDeb PPA and Prevent Snap Chromium From Being Installed
+
+```
+sudo add-apt-repository ppa:xtradeb/apps -y
+echo 'Package: chromium*
+Pin: release o=LP-PPA-xtradeb-apps
+Pin-Priority: 1001
+
+Package: chromium*
+Pin: release o=Ubuntu
+Pin-Priority: -1' | sudo tee /etc/apt/preferences.d/thunderbird
+sudo apt update
+sudo apt install chromium -y
+```
+You may want to install other packages from XtraDeb PPA, such as `chromium-driver` and `chromium-l10n`.
 
 ### References
 

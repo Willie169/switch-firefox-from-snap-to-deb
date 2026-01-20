@@ -1,26 +1,26 @@
 ## switch-firefox-from-snap-to-deb
 
-Scripts to switch Firefox and Thunderbird from Snap to `.deb` version from Mozilla Team PPA, fix possible Fcitx5 not working in Firefox from PPA, remove Snap, prevent it from being installed, etc.
+Scripts to switch Firefox and Thunderbird from Snap to Deb version from Mozilla Team PPA, fix possible Fcitx5 not working in Firefox from PPA, remove Snap, prevent it from being installed, etc.
 
 ### Table of Contents
 
-* [Script to Switch from Snap Firefox and Thunderbird to Deb Firefox ESR and Thunderbird, Enable Unattended Upgrade, and Fix Possible Fcitx5 not Working in Firefox from PPA (Recommended)](#script-to-switch-from-snap-firefox-and-thunderbird-to-deb-firefox-esr-and-thunderbird-enable-unattended-upgrade-and-fix-possible-fcitx5-not-working-in-firefox-from-ppa-recommended)
-* [Script to Remove Snap, Prevent it From Being Installed, Install Deb Firefox ESR and Thunderbird, Enable Unattended Upgrade, and Fix Possible Fcitx5 not Working in Firefox from PPA (Recommended for Ubuntu with KDE Plasma)](#script-to-remove-snap-prevent-it-from-being-installed-install-deb-firefox-esr-and-thunderbird-enable-unattended-upgrade-and-fix-possible-fcitx5-not-working-in-firefox-from-ppa-recommended-for-ubuntu-with-kde-plasma)
+* [Script to Switch from Snap Firefox and Thunderbird to Deb Firefox ESR and Thunderbird from Mozilla Team PPA, Enable Unattended Upgrade, and Fix Possible Fcitx5 not Working in Firefox from PPA (Recommended)](#script-to-switch-from-snap-firefox-and-thunderbird-to-deb-firefox-esr-and-thunderbird-from-mozilla-team-ppa-enable-unattended-upgrade-and-fix-possible-fcitx5-not-working-in-firefox-from-ppa-recommended)
+* [Script to Remove Snap, Prevent it From Being Installed, Install Deb Firefox ESR and Thunderbird from Mozilla Team PPA, Enable Unattended Upgrade, and Fix Possible Fcitx5 not Working in Firefox from PPA (Recommended for Ubuntu with KDE Plasma)](#script-to-remove-snap-prevent-it-from-being-installed-install-deb-firefox-esr-and-thunderbird-from-mozilla-team-ppa-enable-unattended-upgrade-and-fix-possible-fcitx5-not-working-in-firefox-from-ppa-recommended-for-ubuntu-with-kde-plasma)
 * [Script to Remove Snap and Prevent it From Being Installed](#script-to-remove-snap-and-prevent-it-from-being-installed)
-* [Script to Switch from Snap Firefox to Deb Firefox ESR](#script-to-switch-from-snap-firefox-to-deb-firefox-esr)
-* [Script to Switch from Snap Firefox to Deb Firefox](#script-to-switch-from-snap-firefox-to-deb-firefox)
-* [Script to Switch from Snap Thunderbird to Deb Thunderbird](#script-to-switch-from-snap-thunderbird-to-deb-thunderbird)
+* [Script to Switch from Snap Firefox to Deb Firefox ESR from Mozilla Team PPA](#script-to-switch-from-snap-firefox-to-deb-firefox-esr-from-mozilla-team-ppa)
+* [Script to Switch from Snap Firefox to Deb Firefox from Mozilla Team PPA](#script-to-switch-from-snap-firefox-to-deb-firefox-from-mozilla-team-ppa)
+* [Script to Switch from Snap Thunderbird to Deb Thunderbird from Mozilla Team PPA](#script-to-switch-from-snap-thunderbird-to-deb-thunderbird-from-mozilla-team-ppa)
 * [Script to Enable Unattended Upgrade for Packages from Mozilla Team PPA](#script-to-enable-unattended-upgrade-for-packages-from-mozilla-team-ppa)
-* [Script to Switch from Deb Firefox ESR Back to Snap Firefox](#script-to-switch-from-deb-firefox-esr-back-to-snap-firefox)
-* [Script to Switch from Deb Firefox Back to Snap Firefox](#script-to-switch-from-deb-firefox-back-to-snap-firefox)
-* [Script to Switch Deb Thunderbird Back to Snap Thunderbird](#script-to-switch-deb-thunderbird-back-to-snap-thunderbird)
+* [Script to Switch from Deb Firefox ESR from Mozilla Team PPA Back to Snap Firefox](#script-to-switch-from-deb-firefox-esr-from-mozilla-team-ppa-back-to-snap-firefox)
+* [Script to Switch from Deb Firefox from Mozilla Team PPA Back to Snap Firefox](#script-to-switch-from-deb-firefox-from-mozilla-team-ppa-back-to-snap-firefox)
+* [Script to Switch Deb Thunderbird from Mozilla Team PPA Back to Snap Thunderbird](#script-to-switch-deb-thunderbird-from-mozilla-team-ppa-back-to-snap-thunderbird)
 * [Script to Disable Unattended Upgrade for Packages from Mozilla Team PPA](#script-to-disable-unattended-upgrade-for-packages-from-mozilla-team-ppa)
 * [Remove Mozilla Team PPA](#remove-mozilla-team-ppa)
 * [Script to Fix Possible Fcitx5 not Working in Firefox from PPA](#script-to-fix-possible-fcitx5-not-working-in-firefox-from-ppa)
 * [References](#references)
 * [My Related Repositories](#my-related-repositories)
 
-### Script to Switch from Snap Firefox and Thunderbird to Deb Firefox ESR and Thunderbird, Enable Unattended Upgrade, and Fix Possible Fcitx5 not Working in Firefox from PPA (Recommended)
+### Script to Switch from Snap Firefox and Thunderbird to Deb Firefox ESR and Thunderbird from Mozilla Team PPA, Enable Unattended Upgrade, and Fix Possible Fcitx5 not Working in Firefox from PPA (Recommended)
 
 ```
 sudo add-apt-repository ppa:mozillateam/ppa -y
@@ -57,7 +57,7 @@ sudo ln -sf /etc/apparmor.d/firefox /etc/apparmor.d/disable/
 sudo apparmor_parser -R /etc/apparmor.d/firefox
 ```
 
-### Script to Remove Snap, Prevent it From Being Installed, Install Deb Firefox ESR and Thunderbird, Enable Unattended Upgrade, and Fix Possible Fcitx5 not Working in Firefox from PPA (Recommended for Ubuntu with KDE Plasma)
+### Script to Remove Snap, Prevent it From Being Installed, Install Deb Firefox ESR and Thunderbird from Mozilla Team PPA, Enable Unattended Upgrade, and Fix Possible Fcitx5 not Working in Firefox from PPA (Recommended for Ubuntu with KDE Plasma)
 
 **WARNING**: This script is safe to use on Ubuntu with KDE Plasma (such as Kubuntu). For those with GNOME software Center, Snap Store, or other built-in integrations with Snap (such as official Ubuntu from Canonical), further actions may be needed regarding them, and thus use this script only if you are not afraid of troubleshooting the system.
 
@@ -201,7 +201,7 @@ Pin: release a=*
 Pin-Priority: -1' | sudo tee /etc/apt/preferences.d/snapd
 ```
 
-### Script to Switch from Snap Firefox to Deb Firefox ESR
+### Script to Switch from Snap Firefox to Deb Firefox ESR from Mozilla Team PPA
 
 ```
 sudo add-apt-repository ppa:mozillateam/ppa -y
@@ -222,7 +222,7 @@ sudo apt autoremove firefox --purge -y
 sudo apt install firefox-esr --allow-downgrades -y
 ```
 
-### Script to Switch from Snap Firefox to Deb Firefox
+### Script to Switch from Snap Firefox to Deb Firefox from Mozilla Team PPA
 
 ```
 sudo add-apt-repository ppa:mozillateam/ppa -y
@@ -241,7 +241,7 @@ sudo snap remove firefox 2>/dev/null || true
 sudo apt install firefox --allow-downgrades -y
 ```
 
-### Script to Switch from Snap Thunderbird to Deb Thunderbird
+### Script to Switch from Snap Thunderbird to Deb Thunderbird from Mozilla Team PPA
 
 ```
 sudo add-apt-repository ppa:mozillateam/ppa -y
@@ -266,7 +266,7 @@ sudo apt install thunderbird --allow-downgrades -y
 echo 'Unattended-Upgrade::Allowed-Origins:: "LP-PPA-mozillateam:$(lsb_release -cs)";' | sudo tee /etc/apt/apt.conf.d/51unattended-upgrades-mozilla
 ```
 
-### Script to Switch from Deb Firefox ESR Back to Snap Firefox
+### Script to Switch from Deb Firefox ESR from Mozilla Team PPA Back to Snap Firefox
 
 ```
 sudo rm -rf /etc/apt/preferences.d/firefox
@@ -274,7 +274,7 @@ sudo apt autoremove firefox-esr --purge -y
 sudo snap install firefox
 ```
 
-### Script to Switch from Deb Firefox Back to Snap Firefox
+### Script to Switch from Deb Firefox from Mozilla Team PPA Back to Snap Firefox
 
 ```
 sudo rm -rf /etc/apt/preferences.d/firefox
@@ -282,7 +282,7 @@ sudo apt autoremove firefox --purge -y
 sudo snap install firefox
 ```
 
-### Script to Switch Deb Thunderbird Back to Snap Thunderbird
+### Script to Switch Deb Thunderbird from Mozilla Team PPA Back to Snap Thunderbird
 
 ```
 sudo rm -rf /etc/apt/preferences.d/thunderbird

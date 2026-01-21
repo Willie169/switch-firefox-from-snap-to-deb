@@ -18,6 +18,7 @@ Scripts to switch Firefox and Thunderbird from Snap to Deb version from Mozilla 
 * [Script to Disable Unattended Upgrade for Packages from Mozilla Team PPA](#script-to-disable-unattended-upgrade-for-packages-from-mozilla-team-ppa)
 * [Remove Mozilla Team PPA](#remove-mozilla-team-ppa)
 * [Script to Fix Possible Fcitx5 not Working in Firefox from PPA](#script-to-fix-possible-fcitx5-not-working-in-firefox-from-ppa)
+* [Script to Switch Deb Chromium from XtraDeb PPA Back to Snap Chromium](#script-to-switch-deb-chromium-from-xtradeb-ppa-back-to-snap-chromium)
 * [References](#references)
 * [My Related Repositories](#my-related-repositories)
 
@@ -68,11 +69,11 @@ Pin-Priority: 1001
 
 Package: chromium*
 Pin: release o=Ubuntu
-Pin-Priority: -1' | sudo tee /etc/apt/preferences.d/thunderbird
+Pin-Priority: -1' | sudo tee /etc/apt/preferences.d/chromium
 sudo apt update
 sudo apt install chromium -y
 ```
-You may want to install other packages from XtraDeb PPA, such as `chromium-driver` and `chromium-l10n`.
+You may also want to install other packages from XtraDeb PPA, such as `chromium-driver` and `chromium-l10n`.
 
 ### Script to Remove Snap, Prevent it From Being Installed, Install Deb Firefox ESR and Thunderbird from Mozilla Team PPA, Enable Unattended Upgrade, and Fix Possible Fcitx5 not Working in Firefox from PPA for Ubuntu with KDE Plasma
 
@@ -325,6 +326,15 @@ sudo add-apt-repository -r ppa:mozillateam/ppa
 sudo ln -sf /etc/apparmor.d/firefox /etc/apparmor.d/disable/
 sudo apparmor_parser -R /etc/apparmor.d/firefox
 ```
+
+### Script to Switch Deb Chromium from XtraDeb PPA Back to Snap Chromium
+
+```
+sudo rm -rf /etc/apt/preferences.d/chromium
+sudo apt autoremove chromium* --purge -y
+sudo snap install chromium
+```
+You may also want to install other packages from Snap, such as `chromium-ffmpeg`.
 
 ### References
 

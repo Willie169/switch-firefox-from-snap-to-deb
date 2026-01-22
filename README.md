@@ -19,6 +19,7 @@ Scripts to switch Firefox and Thunderbird from Snap to Deb version from Mozilla 
 * [Remove Mozilla Team PPA](#remove-mozilla-team-ppa)
 * [Script to Fix Possible Fcitx5 not Working in Firefox from PPA](#script-to-fix-possible-fcitx5-not-working-in-firefox-from-ppa)
 * [Script to Switch Deb Chromium from XtraDeb PPA Back to Snap Chromium](#script-to-switch-deb-chromium-from-xtradeb-ppa-back-to-snap-chromium)
+* [Remove XtraDeb PPA](#remove-xtradeb-ppa)
 * [References](#references)
 * [My Related Repositories](#my-related-repositories)
 
@@ -335,6 +336,12 @@ sudo apt autoremove chromium* --purge -y
 sudo snap install chromium
 ```
 You may also want to install other packages from Snap, such as `chromium-ffmpeg`.
+
+### Remove XtraDeb PPA
+
+```
+sudo add-apt-repository -r ppa:xtradeb/apps
+```
 
 ### References
 

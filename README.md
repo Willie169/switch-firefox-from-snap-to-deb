@@ -4,16 +4,18 @@ Scripts to switch Firefox and Thunderbird from Snap to Deb version from Mozilla 
 
 ### Table of Contents
 
+* [Script to Switch from Snap Firefox and Thunderbird to Deb Firefox and Thunderbird from Mozilla Team PPA, Enable Unattended Upgrade, and Fix Possible Fcitx5 not Working in Firefox from PPA (Recommended)](#script-to-switch-from-snap-firefox-and-thunderbird-to-deb-firefox-and-thunderbird-from-mozilla-team-ppa-enable-unattended-upgrade-and-fix-possible-fcitx5-not-working-in-firefox-from-ppa-recommended)
 * [Script to Switch from Snap Firefox and Thunderbird to Deb Firefox ESR and Thunderbird from Mozilla Team PPA, Enable Unattended Upgrade, and Fix Possible Fcitx5 not Working in Firefox from PPA (Recommended)](#script-to-switch-from-snap-firefox-and-thunderbird-to-deb-firefox-esr-and-thunderbird-from-mozilla-team-ppa-enable-unattended-upgrade-and-fix-possible-fcitx5-not-working-in-firefox-from-ppa-recommended)
 * [Install Deb Chromium from XtraDeb PPA and Prevent Snap Chromium From Being Installed (Recommended)](#install-deb-chromium-from-xtradeb-ppa-and-prevent-snap-chromium-from-being-installed-recommended)
+* [Script to Remove Snap, Prevent it From Being Installed, Install Deb Firefox and Thunderbird from Mozilla Team PPA, Enable Unattended Upgrade, and Fix Possible Fcitx5 not Working in Firefox from PPA for Ubuntu with KDE Plasma](#script-to-remove-snap-prevent-it-from-being-installed-install-deb-firefox-and-thunderbird-from-mozilla-team-ppa-enable-unattended-upgrade-and-fix-possible-fcitx5-not-working-in-firefox-from-ppa-for-ubuntu-with-kde-plasma)
 * [Script to Remove Snap, Prevent it From Being Installed, Install Deb Firefox ESR and Thunderbird from Mozilla Team PPA, Enable Unattended Upgrade, and Fix Possible Fcitx5 not Working in Firefox from PPA for Ubuntu with KDE Plasma](#script-to-remove-snap-prevent-it-from-being-installed-install-deb-firefox-esr-and-thunderbird-from-mozilla-team-ppa-enable-unattended-upgrade-and-fix-possible-fcitx5-not-working-in-firefox-from-ppa-for-ubuntu-with-kde-plasma)
 * [Script to Remove Snap and Prevent it From Being Installed for Ubuntu with KDE Plasma](#script-to-remove-snap-and-prevent-it-from-being-installed-for-ubuntu-with-kde-plasma)
-* [Script to Switch from Snap Firefox to Deb Firefox ESR from Mozilla Team PPA](#script-to-switch-from-snap-firefox-to-deb-firefox-esr-from-mozilla-team-ppa)
 * [Script to Switch from Snap Firefox to Deb Firefox from Mozilla Team PPA](#script-to-switch-from-snap-firefox-to-deb-firefox-from-mozilla-team-ppa)
+* [Script to Switch from Snap Firefox to Deb Firefox ESR from Mozilla Team PPA](#script-to-switch-from-snap-firefox-to-deb-firefox-esr-from-mozilla-team-ppa)
 * [Script to Switch from Snap Thunderbird to Deb Thunderbird from Mozilla Team PPA](#script-to-switch-from-snap-thunderbird-to-deb-thunderbird-from-mozilla-team-ppa)
 * [Script to Enable Unattended Upgrade for Packages from Mozilla Team PPA](#script-to-enable-unattended-upgrade-for-packages-from-mozilla-team-ppa)
-* [Script to Switch from Deb Firefox ESR from Mozilla Team PPA Back to Snap Firefox](#script-to-switch-from-deb-firefox-esr-from-mozilla-team-ppa-back-to-snap-firefox)
 * [Script to Switch from Deb Firefox from Mozilla Team PPA Back to Snap Firefox](#script-to-switch-from-deb-firefox-from-mozilla-team-ppa-back-to-snap-firefox)
+* [Script to Switch from Deb Firefox ESR from Mozilla Team PPA Back to Snap Firefox](#script-to-switch-from-deb-firefox-esr-from-mozilla-team-ppa-back-to-snap-firefox)
 * [Script to Switch Deb Thunderbird from Mozilla Team PPA Back to Snap Thunderbird](#script-to-switch-deb-thunderbird-from-mozilla-team-ppa-back-to-snap-thunderbird)
 * [Script to Disable Unattended Upgrade for Packages from Mozilla Team PPA](#script-to-disable-unattended-upgrade-for-packages-from-mozilla-team-ppa)
 * [Remove Mozilla Team PPA](#remove-mozilla-team-ppa)
@@ -23,7 +25,42 @@ Scripts to switch Firefox and Thunderbird from Snap to Deb version from Mozilla 
 * [References](#references)
 * [My Related Repositories](#my-related-repositories)
 
-### Script to Switch from Snap Firefox and Thunderbird to Deb Firefox ESR and Thunderbird from Mozilla Team PPA, Enable Unattended Upgrade, and Fix Possible Fcitx5 not Working in Firefox from PPA (Recommended)
+### Script to Switch from Snap Firefox and Thunderbird to Deb Firefox and Thunderbird from Mozilla Team PPA, Enable Unattended Upgrade, and Fix Possible Fcitx5 not Working in Firefox from PPA
+
+```
+sudo add-apt-repository ppa:mozillateam/ppa -y
+echo 'Package: firefox*
+Pin: release o=LP-PPA-mozillateam
+Pin-Priority: 1001
+
+Package: firefox*
+Pin: release o=Ubuntu
+Pin-Priority: -1' | sudo tee /etc/apt/preferences.d/firefox
+sudo rm -f /etc/apparmor.d/usr.bin.firefox
+sudo rm -f /etc/apparmor.d/local/usr.bin.firefox
+sudo systemctl stop var-snap-firefox-common-*.mount 2>/dev/null || true
+sudo systemctl disable var-snap-firefox-common-*.mount 2>/dev/null || true
+sudo snap remove firefox 2>/dev/null || true
+sudo apt install firefox --allow-downgrades -y
+echo 'Package: thunderbird*
+Pin: release o=LP-PPA-mozillateam
+Pin-Priority: 1001
+
+Package: thunderbird*
+Pin: release o=Ubuntu
+Pin-Priority: -1' | sudo tee /etc/apt/preferences.d/thunderbird
+sudo rm -f /etc/apparmor.d/usr.bin.thunderbird
+sudo rm -f /etc/apparmor.d/local/usr.bin.thunderbird
+sudo systemctl stop var-snap-thunderbird-common-*.mount 2>/dev/null || true
+sudo systemctl disable var-snap-thunderbird-common-*.mount 2>/dev/null || true
+sudo snap remove thunderbird 2>/dev/null || true
+sudo apt install thunderbird --allow-downgrades -y
+echo 'Unattended-Upgrade::Allowed-Origins:: "LP-PPA-mozillateam:$(lsb_release -cs)";' | sudo tee /etc/apt/apt.conf.d/51unattended-upgrades-mozilla
+sudo ln -sf /etc/apparmor.d/firefox /etc/apparmor.d/disable/
+sudo apparmor_parser -R /etc/apparmor.d/firefox
+```
+
+### Script to Switch from Snap Firefox and Thunderbird to Deb Firefox ESR and Thunderbird from Mozilla Team PPA, Enable Unattended Upgrade, and Fix Possible Fcitx5 not Working in Firefox from PPA
 
 ```
 sudo add-apt-repository ppa:mozillateam/ppa -y
@@ -75,6 +112,89 @@ sudo apt update
 sudo apt install chromium -y
 ```
 You may also want to install other packages from XtraDeb PPA, such as `chromium-driver` and `chromium-l10n`.
+
+### Script to Remove Snap, Prevent it From Being Installed, Install Deb Firefox and Thunderbird from Mozilla Team PPA, Enable Unattended Upgrade, and Fix Possible Fcitx5 not Working in Firefox from PPA for Ubuntu with KDE Plasma
+
+**WARNING**: This script is safe to use on Ubuntu with KDE Plasma (such as Kubuntu). For those with GNOME software Center, Snap Store, or other built-in integrations with Snap (such as official Ubuntu from Canonical), further actions may be needed regarding them, and thus use this script only if you are not afraid of troubleshooting the system.
+
+```
+sudo systemctl stop snapd.socket
+sudo systemctl stop snapd.service
+sudo systemctl stop snapd.seeded.service
+sudo systemctl disable snapd.socket
+sudo systemctl disable snapd.service
+sudo systemctl disable snapd.seeded.service
+sudo apt autoremove snapd --purge -y
+sudo apt autoremove plasma-discover-backend-snap -y
+sudo rm -rf $HOME/snap /root/snap /snap /bin/snap /usr/bin/x11/snap /usr/bin/snap /lib/snapd /usr/lib/snapd /usr/share/snapd /usr/share/doc/snapd /var/snap /var/lib/snapd /var/cache/snapd
+for bsymlink in /etc/systemd/system/default.target.wants/snap-* ; do
+  if [ -L "$bsymlink" ] && [ ! -e "$bsymlink" ]; then
+    sudo rm -f "$bsymlink"
+  fi
+done
+for bsymlink in /etc/systemd/system/default.target.wants/snapd-* ; do
+  if [ -L "$bsymlink" ] && [ ! -e "$bsymlink" ]; then
+    sudo rm -f "$bsymlink"
+  fi
+done
+for bsymlink in /etc/systemd/system/multi-user.target.wants/snap-* ; do
+  if [ -L "$bsymlink" ] && [ ! -e "$bsymlink" ]; then
+    sudo rm -f "$bsymlink"
+  fi
+done
+for bsymlink in /etc/systemd/system/multi-user.target.wants/snapd-* ; do
+  if [ -L "$bsymlink" ] && [ ! -e "$bsymlink" ]; then
+    sudo rm -f "$bsymlink"
+  fi
+done
+for bsymlink in /var/lib/sddm/.config/systemd/user/timers.target.wants/snap.* ; do
+  if [ -L "$bsymlink" ] && [ ! -e "$bsymlink" ]; then
+    sudo rm -f "$bsymlink"
+  fi
+done
+for bsymlink in /var/lib/sddm/.config/systemd/user/timers.target.wants/snapd.* ; do
+  if [ -L "$bsymlink" ] && [ ! -e "$bsymlink" ]; then
+    sudo rm -f "$bsymlink"
+  fi
+done
+for bsymlink in "$HOME"/.config/systemd/user/timers.target.wants/snap.* ; do
+  if [ -L "$bsymlink" ] && [ ! -e "$bsymlink" ]; then
+    sudo rm -f "$bsymlink"
+  fi
+done
+for bsymlink in "$HOME"/.config/systemd/user/timers.target.wants/snapd.* ; do
+  if [ -L "$bsymlink" ] && [ ! -e "$bsymlink" ]; then
+    sudo rm -f "$bsymlink"
+  fi
+done
+echo 'Package: firefox*
+Pin: release o=LP-PPA-mozillateam
+Pin-Priority: 1001
+
+Package: firefox*
+Pin: release o=Ubuntu
+Pin-Priority: -1' | sudo tee /etc/apt/preferences.d/firefox
+sudo rm -f /etc/apparmor.d/usr.bin.firefox
+sudo rm -f /etc/apparmor.d/local/usr.bin.firefox
+sudo systemctl stop var-snap-firefox-common-*.mount 2>/dev/null || true
+sudo systemctl disable var-snap-firefox-common-*.mount 2>/dev/null || true
+sudo apt install firefox --allow-downgrades -y
+echo 'Package: thunderbird*
+Pin: release o=LP-PPA-mozillateam
+Pin-Priority: 1001
+
+Package: thunderbird*
+Pin: release o=Ubuntu
+Pin-Priority: -1' | sudo tee /etc/apt/preferences.d/thunderbird
+sudo rm -f /etc/apparmor.d/usr.bin.thunderbird
+sudo rm -f /etc/apparmor.d/local/usr.bin.thunderbird
+sudo systemctl stop var-snap-thunderbird-common-*.mount 2>/dev/null || true
+sudo systemctl disable var-snap-thunderbird-common-*.mount 2>/dev/null || true
+sudo apt install thunderbird --allow-downgrades -y
+echo 'Unattended-Upgrade::Allowed-Origins:: "LP-PPA-mozillateam:$(lsb_release -cs)";' | sudo tee /etc/apt/apt.conf.d/51unattended-upgrades-mozilla
+sudo ln -sf /etc/apparmor.d/firefox /etc/apparmor.d/disable/
+sudo apparmor_parser -R /etc/apparmor.d/firefox
+```
 
 ### Script to Remove Snap, Prevent it From Being Installed, Install Deb Firefox ESR and Thunderbird from Mozilla Team PPA, Enable Unattended Upgrade, and Fix Possible Fcitx5 not Working in Firefox from PPA for Ubuntu with KDE Plasma
 
@@ -220,6 +340,25 @@ Pin: release a=*
 Pin-Priority: -1' | sudo tee /etc/apt/preferences.d/snapd
 ```
 
+### Script to Switch from Snap Firefox to Deb Firefox from Mozilla Team PPA
+
+```
+sudo add-apt-repository ppa:mozillateam/ppa -y
+echo 'Package: firefox*
+Pin: release o=LP-PPA-mozillateam
+Pin-Priority: 1001
+
+Package: firefox*
+Pin: release o=Ubuntu
+Pin-Priority: -1' | sudo tee /etc/apt/preferences.d/firefox
+sudo rm -f /etc/apparmor.d/usr.bin.firefox
+sudo rm -f /etc/apparmor.d/local/usr.bin.firefox
+sudo systemctl stop var-snap-firefox-common-*.mount 2>/dev/null || true
+sudo systemctl disable var-snap-firefox-common-*.mount 2>/dev/null || true
+sudo snap remove firefox 2>/dev/null || true
+sudo apt install firefox --allow-downgrades -y
+```
+
 ### Script to Switch from Snap Firefox to Deb Firefox ESR from Mozilla Team PPA
 
 ```
@@ -239,25 +378,6 @@ sudo snap remove firefox 2>/dev/null || true
 sudo apt install firefox --allow-downgrades -y
 sudo apt autoremove firefox --purge -y
 sudo apt install firefox-esr --allow-downgrades -y
-```
-
-### Script to Switch from Snap Firefox to Deb Firefox from Mozilla Team PPA
-
-```
-sudo add-apt-repository ppa:mozillateam/ppa -y
-echo 'Package: firefox*
-Pin: release o=LP-PPA-mozillateam
-Pin-Priority: 1001
-
-Package: firefox*
-Pin: release o=Ubuntu
-Pin-Priority: -1' | sudo tee /etc/apt/preferences.d/firefox
-sudo rm -f /etc/apparmor.d/usr.bin.firefox
-sudo rm -f /etc/apparmor.d/local/usr.bin.firefox
-sudo systemctl stop var-snap-firefox-common-*.mount 2>/dev/null || true
-sudo systemctl disable var-snap-firefox-common-*.mount 2>/dev/null || true
-sudo snap remove firefox 2>/dev/null || true
-sudo apt install firefox --allow-downgrades -y
 ```
 
 ### Script to Switch from Snap Thunderbird to Deb Thunderbird from Mozilla Team PPA
@@ -285,19 +405,19 @@ sudo apt install thunderbird --allow-downgrades -y
 echo 'Unattended-Upgrade::Allowed-Origins:: "LP-PPA-mozillateam:$(lsb_release -cs)";' | sudo tee /etc/apt/apt.conf.d/51unattended-upgrades-mozilla
 ```
 
-### Script to Switch from Deb Firefox ESR from Mozilla Team PPA Back to Snap Firefox
-
-```
-sudo rm -rf /etc/apt/preferences.d/firefox
-sudo apt autoremove firefox-esr --purge -y
-sudo snap install firefox
-```
-
 ### Script to Switch from Deb Firefox from Mozilla Team PPA Back to Snap Firefox
 
 ```
 sudo rm -rf /etc/apt/preferences.d/firefox
 sudo apt autoremove firefox --purge -y
+sudo snap install firefox
+```
+
+### Script to Switch from Deb Firefox ESR from Mozilla Team PPA Back to Snap Firefox
+
+```
+sudo rm -rf /etc/apt/preferences.d/firefox
+sudo apt autoremove firefox-esr --purge -y
 sudo snap install firefox
 ```
 

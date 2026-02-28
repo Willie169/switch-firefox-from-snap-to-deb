@@ -59,6 +59,8 @@ echo 'Unattended-Upgrade::Allowed-Origins:: "LP-PPA-mozillateam:$(lsb_release -c
 sudo ln -sf /etc/apparmor.d/firefox /etc/apparmor.d/disable/
 sudo apparmor_parser -R /etc/apparmor.d/firefox
 sudo rm /var/lib/snapd/desktop/applications/firefox*.desktop 2>/dev/null || true
+sudo rm /var/lib/snapd/inhibit/firefox.lock 2>/dev/null || true
+rm -r snap/firefox 2>/dev/null || true
 sudo rm /var/lib/snapd/desktop/applications/thunderbird*.desktop 2>/dev/null || true
 ```
 
@@ -98,6 +100,8 @@ echo 'Unattended-Upgrade::Allowed-Origins:: "LP-PPA-mozillateam:$(lsb_release -c
 sudo ln -sf /etc/apparmor.d/firefox /etc/apparmor.d/disable/
 sudo apparmor_parser -R /etc/apparmor.d/firefox
 sudo rm /var/lib/snapd/desktop/applications/firefox*.desktop 2>/dev/null || true
+sudo rm /var/lib/snapd/inhibit/firefox.lock 2>/dev/null || true
+rm -r snap/firefox 2>/dev/null || true
 sudo rm /var/lib/snapd/desktop/applications/thunderbird*.desktop 2>/dev/null || true
 ```
 
@@ -199,6 +203,8 @@ echo 'Unattended-Upgrade::Allowed-Origins:: "LP-PPA-mozillateam:$(lsb_release -c
 sudo ln -sf /etc/apparmor.d/firefox /etc/apparmor.d/disable/
 sudo apparmor_parser -R /etc/apparmor.d/firefox
 sudo rm /var/lib/snapd/desktop/applications/firefox*.desktop 2>/dev/null || true
+sudo rm /var/lib/snapd/inhibit/firefox.lock 2>/dev/null || true
+rm -r snap/firefox 2>/dev/null || true
 sudo rm /var/lib/snapd/desktop/applications/thunderbird*.desktop 2>/dev/null || true
 ```
 
@@ -286,6 +292,8 @@ echo 'Unattended-Upgrade::Allowed-Origins:: "LP-PPA-mozillateam:$(lsb_release -c
 sudo ln -sf /etc/apparmor.d/firefox /etc/apparmor.d/disable/
 sudo apparmor_parser -R /etc/apparmor.d/firefox
 sudo rm /var/lib/snapd/desktop/applications/firefox*.desktop 2>/dev/null || true
+sudo rm /var/lib/snapd/inhibit/firefox.lock 2>/dev/null || true
+rm -r snap/firefox 2>/dev/null || true
 sudo rm /var/lib/snapd/desktop/applications/thunderbird*.desktop 2>/dev/null || true
 ```
 
@@ -366,6 +374,8 @@ sudo systemctl disable var-snap-firefox-common-*.mount 2>/dev/null || true
 sudo snap remove firefox 2>/dev/null || true
 sudo apt install firefox --allow-downgrades -y
 sudo rm /var/lib/snapd/desktop/applications/firefox*.desktop 2>/dev/null || true
+sudo rm /var/lib/snapd/inhibit/firefox.lock 2>/dev/null || true
+rm -r snap/firefox 2>/dev/null || true
 ```
 
 ### Script to Switch from Snap Firefox to Deb Firefox ESR from Mozilla Team PPA
@@ -388,6 +398,8 @@ sudo apt install firefox --allow-downgrades -y
 sudo apt autoremove firefox --purge -y
 sudo apt install firefox-esr --allow-downgrades -y
 sudo rm /var/lib/snapd/desktop/applications/firefox*.desktop 2>/dev/null || true
+sudo rm /var/lib/snapd/inhibit/firefox.lock 2>/dev/null || true
+rm -r snap/firefox 2>/dev/null || true
 ```
 
 ### Script to Switch from Snap Thunderbird to Deb Thunderbird from Mozilla Team PPA

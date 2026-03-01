@@ -28,6 +28,8 @@ Scripts to switch Firefox and Thunderbird from Snap to Deb version from Mozilla 
 
 ### After Switching
 
+You may want to re-configure launchers in your Desktop Environment.
+
 If any error occurs when opening Firefox, try running:
 
 ```
@@ -35,8 +37,6 @@ sudo ln -sf /etc/apparmor.d/firefox /etc/apparmor.d/disable/
 sudo apparmor_parser -R /etc/apparmor.d/firefox
 ```
 to disable Firefox AppArmor profile.
-
-You may want to re-configure launchers in your Desktop Environment.
 
 ### Script to Switch from Snap Firefox and Thunderbird to Deb Firefox and Thunderbird from Mozilla Team PPA, Enable Unattended Upgrade, and Fix Possible Fcitx5 not Working in Firefox from PPA (Recommended)
 

@@ -55,7 +55,7 @@ sudo rm -f /etc/apparmor.d/local/usr.bin.firefox
 sudo systemctl stop var-snap-firefox-common-*.mount 2>/dev/null || true
 sudo systemctl disable var-snap-firefox-common-*.mount 2>/dev/null || true
 sudo snap remove firefox 2>/dev/null || true
-sudo apt install firefox --allow-downgrades -y
+sudo apt install firefox --allow-downgrades -y </dev/null
 sudo ln -sf /etc/apparmor.d/firefox /etc/apparmor.d/disable/
 sudo apparmor_parser -R /etc/apparmor.d/firefox
 sudo rm /var/lib/snapd/desktop/applications/firefox*.desktop 2>/dev/null || true
@@ -73,7 +73,7 @@ sudo rm -f /etc/apparmor.d/local/usr.bin.thunderbird
 sudo systemctl stop var-snap-thunderbird-common-*.mount 2>/dev/null || true
 sudo systemctl disable var-snap-thunderbird-common-*.mount 2>/dev/null || true
 sudo snap remove thunderbird 2>/dev/null || true
-sudo apt install thunderbird --allow-downgrades -y
+sudo apt install thunderbird --allow-downgrades -y </dev/null
 sudo rm /var/lib/snapd/desktop/applications/thunderbird*.desktop 2>/dev/null || true
 echo 'Unattended-Upgrade::Allowed-Origins:: "LP-PPA-mozillateam:$(lsb_release -cs)";' | sudo tee /etc/apt/apt.conf.d/51unattended-upgrades-mozilla
 ```
@@ -94,9 +94,9 @@ sudo rm -f /etc/apparmor.d/local/usr.bin.firefox
 sudo systemctl stop var-snap-firefox-common-*.mount 2>/dev/null || true
 sudo systemctl disable var-snap-firefox-common-*.mount 2>/dev/null || true
 sudo snap remove firefox 2>/dev/null || true
-sudo apt install firefox --allow-downgrades -y
-sudo apt autoremove firefox --purge -y 2>/dev/null || true
-sudo apt install firefox-esr --allow-downgrades -y
+sudo apt install firefox --allow-downgrades -y </dev/null
+sudo apt autoremove firefox --purge -y  </dev/null 2>/dev/null || true
+sudo apt install firefox-esr --allow-downgrades -y </dev/null
 sudo ln -sf /etc/apparmor.d/firefox /etc/apparmor.d/disable/
 sudo apparmor_parser -R /etc/apparmor.d/firefox
 sudo rm /var/lib/snapd/desktop/applications/firefox*.desktop 2>/dev/null || true
@@ -114,7 +114,7 @@ sudo rm -f /etc/apparmor.d/local/usr.bin.thunderbird
 sudo systemctl stop var-snap-thunderbird-common-*.mount 2>/dev/null || true
 sudo systemctl disable var-snap-thunderbird-common-*.mount 2>/dev/null || true
 sudo snap remove thunderbird 2>/dev/null || true
-sudo apt install thunderbird --allow-downgrades -y
+sudo apt install thunderbird --allow-downgrades -y </dev/null
 sudo rm /var/lib/snapd/desktop/applications/thunderbird*.desktop 2>/dev/null || true
 echo 'Unattended-Upgrade::Allowed-Origins:: "LP-PPA-mozillateam:$(lsb_release -cs)";' | sudo tee /etc/apt/apt.conf.d/51unattended-upgrades-mozilla
 ```
@@ -131,7 +131,7 @@ Package: chromium*
 Pin: release o=Ubuntu
 Pin-Priority: -1' | sudo tee /etc/apt/preferences.d/chromium
 sudo apt update
-sudo apt install chromium -y
+sudo apt install chromium -y </dev/null
 ```
 You may also want to install other packages from XtraDeb PPA, such as `chromium-driver` and `chromium-l10n`.
 
@@ -146,8 +146,8 @@ sudo systemctl stop snapd.seeded.service
 sudo systemctl disable snapd.socket
 sudo systemctl disable snapd.service
 sudo systemctl disable snapd.seeded.service
-sudo apt autoremove snapd --purge -y
-sudo apt autoremove plasma-discover-backend-snap -y
+sudo apt autoremove snapd --purge -y </dev/null
+sudo apt autoremove plasma-discover-backend-snap -y </dev/null
 sudo rm -rf $HOME/snap /root/snap /snap /bin/snap /usr/bin/x11/snap /usr/bin/snap /lib/snapd /usr/lib/snapd /usr/share/snapd /usr/share/doc/snapd /var/snap /var/lib/snapd /var/cache/snapd
 for bsymlink in /etc/systemd/system/default.target.wants/snap-* ; do
   if [ -L "$bsymlink" ] && [ ! -e "$bsymlink" ]; then
@@ -210,7 +210,7 @@ sudo rm -f /etc/apparmor.d/local/usr.bin.firefox
 sudo systemctl stop var-snap-firefox-common-*.mount 2>/dev/null || true
 sudo systemctl disable var-snap-firefox-common-*.mount 2>/dev/null || true
 sudo snap remove firefox 2>/dev/null || true
-sudo apt install firefox --allow-downgrades -y
+sudo apt install firefox --allow-downgrades -y </dev/null
 sudo ln -sf /etc/apparmor.d/firefox /etc/apparmor.d/disable/
 sudo apparmor_parser -R /etc/apparmor.d/firefox
 sudo rm /var/lib/snapd/desktop/applications/firefox*.desktop 2>/dev/null || true
@@ -235,9 +235,9 @@ sudo rm -f /etc/apparmor.d/local/usr.bin.firefox
 sudo systemctl stop var-snap-firefox-common-*.mount 2>/dev/null || true
 sudo systemctl disable var-snap-firefox-common-*.mount 2>/dev/null || true
 sudo snap remove firefox 2>/dev/null || true
-sudo apt install firefox --allow-downgrades -y
-sudo apt autoremove firefox --purge -y 2>/dev/null || true
-sudo apt install firefox-esr --allow-downgrades -y
+sudo apt install firefox --allow-downgrades -y </dev/null
+sudo apt autoremove firefox --purge -y </dev/null 2>/dev/null || true
+sudo apt install firefox-esr --allow-downgrades -y </dev/null
 sudo ln -sf /etc/apparmor.d/firefox /etc/apparmor.d/disable/
 sudo apparmor_parser -R /etc/apparmor.d/firefox
 sudo rm /var/lib/snapd/desktop/applications/firefox*.desktop 2>/dev/null || true
@@ -262,7 +262,7 @@ sudo rm -f /etc/apparmor.d/local/usr.bin.thunderbird
 sudo systemctl stop var-snap-thunderbird-common-*.mount 2>/dev/null || true
 sudo systemctl disable var-snap-thunderbird-common-*.mount 2>/dev/null || true
 sudo snap remove thunderbird 2>/dev/null || true
-sudo apt install thunderbird --allow-downgrades -y
+sudo apt install thunderbird --allow-downgrades -y </dev/null
 sudo rm /var/lib/snapd/desktop/applications/thunderbird*.desktop 2>/dev/null || true
 echo 'Unattended-Upgrade::Allowed-Origins:: "LP-PPA-mozillateam:$(lsb_release -cs)";' | sudo tee /etc/apt/apt.conf.d/51unattended-upgrades-mozilla
 ```
@@ -277,7 +277,7 @@ echo 'Unattended-Upgrade::Allowed-Origins:: "LP-PPA-mozillateam:$(lsb_release -c
 
 ```
 sudo rm -rf /etc/apt/preferences.d/firefox
-sudo apt autoremove firefox --purge -y
+sudo apt autoremove firefox --purge -y </dev/null
 sudo snap install firefox
 ```
 
@@ -285,7 +285,7 @@ sudo snap install firefox
 
 ```
 sudo rm -rf /etc/apt/preferences.d/firefox
-sudo apt autoremove firefox-esr --purge -y
+sudo apt autoremove firefox-esr --purge -y </dev/null
 sudo snap install firefox
 ```
 
@@ -293,7 +293,7 @@ sudo snap install firefox
 
 ```
 sudo rm -rf /etc/apt/preferences.d/thunderbird
-sudo apt autoremove thunderbird --purge -y
+sudo apt autoremove thunderbird --purge -y </dev/null
 sudo snap install thunderbird
 ```
 
@@ -313,7 +313,7 @@ sudo add-apt-repository -r ppa:mozillateam/ppa
 
 ```
 sudo rm -rf /etc/apt/preferences.d/chromium
-sudo apt autoremove chromium* --purge -y
+sudo apt autoremove chromium* --purge -y </dev/null
 sudo snap install chromium
 ```
 

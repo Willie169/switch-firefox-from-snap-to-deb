@@ -47,7 +47,7 @@ Pin-Priority: 1001
 
 Package: firefox*
 Pin: release o=Ubuntu
-Pin-Priority: -1' | sudo tee /etc/apt/preferences.d/firefox
+Pin-Priority: -1' | sudo tee /etc/apt/preferences.d/firefox >/dev/null
 sudo rm -f /etc/apparmor.d/usr.bin.firefox
 sudo rm -f /etc/apparmor.d/local/usr.bin.firefox
 sudo systemctl stop var-snap-firefox-common-*.mount 2>/dev/null || true
@@ -66,7 +66,7 @@ Pin-Priority: 1001
 
 Package: thunderbird*
 Pin: release o=Ubuntu
-Pin-Priority: -1' | sudo tee /etc/apt/preferences.d/thunderbird
+Pin-Priority: -1' | sudo tee /etc/apt/preferences.d/thunderbird >/dev/null
 sudo rm -f /etc/apparmor.d/usr.bin.thunderbird
 sudo rm -f /etc/apparmor.d/local/usr.bin.thunderbird
 sudo systemctl stop var-snap-thunderbird-common-*.mount 2>/dev/null || true
@@ -75,7 +75,7 @@ sudo systemctl disable snap-thunderbird*.mount 2>/dev/null || true
 sudo snap remove thunderbird 2>/dev/null || true
 sudo apt install thunderbird --allow-downgrades -y
 sudo rm /var/lib/snapd/desktop/applications/thunderbird*.desktop 2>/dev/null || true
-echo 'Unattended-Upgrade::Allowed-Origins:: "LP-PPA-mozillateam:$(lsb_release -cs)";' | sudo tee /etc/apt/apt.conf.d/51unattended-upgrades-mozilla
+echo 'Unattended-Upgrade::Allowed-Origins:: "LP-PPA-mozillateam:$(lsb_release -cs)";' | sudo tee /etc/apt/apt.conf.d/51unattended-upgrades-mozilla >/dev/null
 ```
 
 ### Switch from Snap Firefox and Thunderbird to Deb Firefox ESR and Thunderbird from Mozilla Team PPA, Enable Unattended Upgrade, and Fix Possible Fcitx5 not Working in Firefox from PPA
@@ -88,7 +88,7 @@ Pin-Priority: 1001
 
 Package: firefox*
 Pin: release o=Ubuntu
-Pin-Priority: -1' | sudo tee /etc/apt/preferences.d/firefox
+Pin-Priority: -1' | sudo tee /etc/apt/preferences.d/firefox >/dev/null
 sudo rm -f /etc/apparmor.d/usr.bin.firefox
 sudo rm -f /etc/apparmor.d/local/usr.bin.firefox
 sudo systemctl stop var-snap-firefox-common-*.mount 2>/dev/null || true
@@ -109,7 +109,7 @@ Pin-Priority: 1001
 
 Package: thunderbird*
 Pin: release o=Ubuntu
-Pin-Priority: -1' | sudo tee /etc/apt/preferences.d/thunderbird
+Pin-Priority: -1' | sudo tee /etc/apt/preferences.d/thunderbird >/dev/null
 sudo rm -f /etc/apparmor.d/usr.bin.thunderbird
 sudo rm -f /etc/apparmor.d/local/usr.bin.thunderbird
 sudo systemctl stop var-snap-thunderbird-common-*.mount 2>/dev/null || true
@@ -118,7 +118,7 @@ sudo systemctl disable snap-thunderbird*.mount 2>/dev/null || true
 sudo snap remove thunderbird 2>/dev/null || true
 sudo apt install thunderbird --allow-downgrades -y
 sudo rm /var/lib/snapd/desktop/applications/thunderbird*.desktop 2>/dev/null || true
-echo 'Unattended-Upgrade::Allowed-Origins:: "LP-PPA-mozillateam:$(lsb_release -cs)";' | sudo tee /etc/apt/apt.conf.d/51unattended-upgrades-mozilla
+echo 'Unattended-Upgrade::Allowed-Origins:: "LP-PPA-mozillateam:$(lsb_release -cs)";' | sudo tee /etc/apt/apt.conf.d/51unattended-upgrades-mozilla >/dev/null
 ```
 
 ### Install Deb Chromium from XtraDeb PPA and Prevent Snap Chromium From Being Installed
@@ -131,7 +131,7 @@ Pin-Priority: 1001
 
 Package: chromium*
 Pin: release o=Ubuntu
-Pin-Priority: -1' | sudo tee /etc/apt/preferences.d/chromium
+Pin-Priority: -1' | sudo tee /etc/apt/preferences.d/chromium >/dev/null
 sudo apt update
 sudo apt install chromium -y
 ```
@@ -217,7 +217,7 @@ for bsymlink in "$HOME"/.config/systemd/user/timers.target.wants/snapd.* ; do
 done
 echo 'Package: snapd
 Pin: release a=*
-Pin-Priority: -1' | sudo tee /etc/apt/preferences.d/snapd
+Pin-Priority: -1' | sudo tee /etc/apt/preferences.d/snapd >/dev/null
 sudo systemctl disable snapd.* 
 sudo systemctl disable snap-*.mount 
 ```
@@ -232,7 +232,7 @@ Pin-Priority: 1001
 
 Package: firefox*
 Pin: release o=Ubuntu
-Pin-Priority: -1' | sudo tee /etc/apt/preferences.d/firefox
+Pin-Priority: -1' | sudo tee /etc/apt/preferences.d/firefox >/dev/null
 sudo rm -f /etc/apparmor.d/usr.bin.firefox
 sudo rm -f /etc/apparmor.d/local/usr.bin.firefox
 sudo systemctl stop var-snap-firefox-common-*.mount 2>/dev/null || true
@@ -245,7 +245,7 @@ sudo apparmor_parser -R /etc/apparmor.d/firefox
 sudo rm /var/lib/snapd/desktop/applications/firefox*.desktop 2>/dev/null || true
 sudo rm /var/lib/snapd/inhibit/firefox.lock 2>/dev/null || true
 rm -r snap/firefox 2>/dev/null || true
-echo 'Unattended-Upgrade::Allowed-Origins:: "LP-PPA-mozillateam:$(lsb_release -cs)";' | sudo tee /etc/apt/apt.conf.d/51unattended-upgrades-mozilla
+echo 'Unattended-Upgrade::Allowed-Origins:: "LP-PPA-mozillateam:$(lsb_release -cs)";' | sudo tee /etc/apt/apt.conf.d/51unattended-upgrades-mozilla >/dev/null
 ```
 
 ### Switch from Snap Firefox to Deb Firefox ESR from Mozilla Team PPA
@@ -258,7 +258,7 @@ Pin-Priority: 1001
 
 Package: firefox*
 Pin: release o=Ubuntu
-Pin-Priority: -1' | sudo tee /etc/apt/preferences.d/firefox
+Pin-Priority: -1' | sudo tee /etc/apt/preferences.d/firefox >/dev/null
 sudo rm -f /etc/apparmor.d/usr.bin.firefox
 sudo rm -f /etc/apparmor.d/local/usr.bin.firefox
 sudo systemctl stop var-snap-firefox-common-*.mount 2>/dev/null || true
@@ -273,7 +273,7 @@ sudo apparmor_parser -R /etc/apparmor.d/firefox
 sudo rm /var/lib/snapd/desktop/applications/firefox*.desktop 2>/dev/null || true
 sudo rm /var/lib/snapd/inhibit/firefox.lock 2>/dev/null || true
 rm -r snap/firefox 2>/dev/null || true
-echo 'Unattended-Upgrade::Allowed-Origins:: "LP-PPA-mozillateam:$(lsb_release -cs)";' | sudo tee /etc/apt/apt.conf.d/51unattended-upgrades-mozilla
+echo 'Unattended-Upgrade::Allowed-Origins:: "LP-PPA-mozillateam:$(lsb_release -cs)";' | sudo tee /etc/apt/apt.conf.d/51unattended-upgrades-mozilla >/dev/null
 ```
 
 ### Switch from Snap Thunderbird to Deb Thunderbird from Mozilla Team PPA
@@ -286,7 +286,7 @@ Pin-Priority: 1001
 
 Package: thunderbird*
 Pin: release o=Ubuntu
-Pin-Priority: -1' | sudo tee /etc/apt/preferences.d/thunderbird
+Pin-Priority: -1' | sudo tee /etc/apt/preferences.d/thunderbird >/dev/null
 sudo rm -f /etc/apparmor.d/usr.bin.thunderbird
 sudo rm -f /etc/apparmor.d/local/usr.bin.thunderbird
 sudo systemctl stop var-snap-thunderbird-common-*.mount 2>/dev/null || true
@@ -295,13 +295,13 @@ sudo systemctl disable snap-thunderbird*.mount 2>/dev/null || true
 sudo snap remove thunderbird 2>/dev/null || true
 sudo apt install thunderbird --allow-downgrades -y
 sudo rm /var/lib/snapd/desktop/applications/thunderbird*.desktop 2>/dev/null || true
-echo 'Unattended-Upgrade::Allowed-Origins:: "LP-PPA-mozillateam:$(lsb_release -cs)";' | sudo tee /etc/apt/apt.conf.d/51unattended-upgrades-mozilla
+echo 'Unattended-Upgrade::Allowed-Origins:: "LP-PPA-mozillateam:$(lsb_release -cs)";' | sudo tee /etc/apt/apt.conf.d/51unattended-upgrades-mozilla >/dev/null
 ```
 
 ### Enable Unattended Upgrade for Packages from Mozilla Team PPA
 
 ```
-echo 'Unattended-Upgrade::Allowed-Origins:: "LP-PPA-mozillateam:$(lsb_release -cs)";' | sudo tee /etc/apt/apt.conf.d/51unattended-upgrades-mozilla
+echo 'Unattended-Upgrade::Allowed-Origins:: "LP-PPA-mozillateam:$(lsb_release -cs)";' | sudo tee /etc/apt/apt.conf.d/51unattended-upgrades-mozilla >/dev/null
 ```
 
 ### Switch from Deb Firefox from Mozilla Team PPA Back to Snap Firefox

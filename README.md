@@ -43,7 +43,7 @@ to disable Firefox AppArmor profile.
 sudo add-apt-repository ppa:mozillateam/ppa -y
 echo 'Package: firefox*
 Pin: release o=LP-PPA-mozillateam
-Pin-Priority: 1001
+Pin-Priority: 990
 
 Package: firefox*
 Pin: release o=Ubuntu
@@ -62,7 +62,7 @@ sudo rm /var/lib/snapd/inhibit/firefox.lock 2>/dev/null || true
 rm -r snap/firefox 2>/dev/null || true
 echo 'Package: thunderbird*
 Pin: release o=LP-PPA-mozillateam
-Pin-Priority: 1001
+Pin-Priority: 990
 
 Package: thunderbird*
 Pin: release o=Ubuntu
@@ -84,7 +84,7 @@ echo "Unattended-Upgrade::Allowed-Origins:: \"LP-PPA-mozillateam:$(lsb_release -
 sudo add-apt-repository ppa:mozillateam/ppa -y
 echo 'Package: firefox*
 Pin: release o=LP-PPA-mozillateam
-Pin-Priority: 1001
+Pin-Priority: 990
 
 Package: firefox*
 Pin: release o=Ubuntu
@@ -105,7 +105,7 @@ sudo rm /var/lib/snapd/inhibit/firefox.lock 2>/dev/null || true
 rm -r snap/firefox 2>/dev/null || true
 echo 'Package: thunderbird*
 Pin: release o=LP-PPA-mozillateam
-Pin-Priority: 1001
+Pin-Priority: 990
 
 Package: thunderbird*
 Pin: release o=Ubuntu
@@ -127,7 +127,7 @@ echo "Unattended-Upgrade::Allowed-Origins:: \"LP-PPA-mozillateam:$(lsb_release -
 sudo add-apt-repository ppa:xtradeb/apps -y
 echo 'Package: chromium*
 Pin: release o=LP-PPA-xtradeb-apps
-Pin-Priority: 1001
+Pin-Priority: 990
 
 Package: chromium*
 Pin: release o=Ubuntu
@@ -228,7 +228,7 @@ sudo systemctl disable snap-*.mount
 sudo add-apt-repository ppa:mozillateam/ppa -y
 echo 'Package: firefox*
 Pin: release o=LP-PPA-mozillateam
-Pin-Priority: 1001
+Pin-Priority: 990
 
 Package: firefox*
 Pin: release o=Ubuntu
@@ -254,7 +254,7 @@ echo "Unattended-Upgrade::Allowed-Origins:: \"LP-PPA-mozillateam:$(lsb_release -
 sudo add-apt-repository ppa:mozillateam/ppa -y
 echo 'Package: firefox*
 Pin: release o=LP-PPA-mozillateam
-Pin-Priority: 1001
+Pin-Priority: 990
 
 Package: firefox*
 Pin: release o=Ubuntu
@@ -282,7 +282,7 @@ echo "Unattended-Upgrade::Allowed-Origins:: \"LP-PPA-mozillateam:$(lsb_release -
 sudo add-apt-repository ppa:mozillateam/ppa -y
 echo 'Package: thunderbird*
 Pin: release o=LP-PPA-mozillateam
-Pin-Priority: 1001
+Pin-Priority: 990
 
 Package: thunderbird*
 Pin: release o=Ubuntu

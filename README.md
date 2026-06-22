@@ -1,27 +1,26 @@
 ## switch-firefox-from-snap-to-deb
 
-Scripts to switch Firefox and Thunderbird from Snap to Deb version from Mozilla Team PPA, remove Snap and prevent it from being installed, install Deb Chromium from XtraDeb PPA and prevent Snap Chromium from being installed, and install Google Chrome from Google Chrome PPA.
+Scripts to switch Firefox and Thunderbird from Snap to Deb version from Mozilla Team PPA, remove Snap and prevent it from being installed, install Deb Chromium from XtraDeb PPA and prevent Snap Chromium from being installed, install Google Chrome from Google Chrome PPA, and disable Ubuntu Pro-related MOTD messages and APT hook.
 
-These scripts also solves potential issues of Fcitx5 on Firefox or Firefox ESR from Mozilla Team PPA. For Firefox and Thunderbird, either [Switch from Snap Firefox and Thunderbird to Deb Firefox and Thunderbird from Mozilla Team PPA and Enable Unattended Upgrade](#switch-from-snap-firefox-and-thunderbird-to-deb-firefox-and-thunderbird-from-mozilla-team-ppa-and-enable-unattended-upgrade) or [Switch from Snap Firefox and Thunderbird to Deb Firefox ESR and Thunderbird from Mozilla Team PPA and Enable Unattended Upgrade](#switch-from-snap-firefox-and-thunderbird-to-deb-firefox-esr-and-thunderbird-from-mozilla-team-ppa-and-enable-unattended-upgrade) is recommended. For Linux Mint user, it is recommended to install from  their [official repository](http://packages.linuxmint.com) instead of using scripts here.
+These scripts also solves potential issues of Fcitx5 on Firefox or Firefox ESR from Mozilla Team PPA. For Firefox and Thunderbird, either [Switch from Snap Firefox and Thunderbird to Deb Firefox and Thunderbird from Mozilla Team PPA](#switch-from-snap-firefox-and-thunderbird-to-deb-firefox-and-thunderbird-from-mozilla-team-ppa) or [Switch from Snap Firefox and Thunderbird to Deb Firefox ESR and Thunderbird from Mozilla Team PPA](#switch-from-snap-firefox-and-thunderbird-to-deb-firefox-esr-and-thunderbird-from-mozilla-team-ppa) is recommended. For Linux Mint user, it is recommended to install from  their [official repository](http://packages.linuxmint.com) instead of using scripts here.
 
 ### Table of Contents
 
 * [After Switching](#after-switching)
-* [Switch from Snap Firefox and Thunderbird to Deb Firefox and Thunderbird from Mozilla Team PPA and Enable Unattended Upgrade](#switch-from-snap-firefox-and-thunderbird-to-deb-firefox-and-thunderbird-from-mozilla-team-ppa-and-enable-unattended-upgrade)
-* [Switch from Snap Firefox and Thunderbird to Deb Firefox ESR and Thunderbird from Mozilla Team PPA and Enable Unattended Upgrade](#switch-from-snap-firefox-and-thunderbird-to-deb-firefox-esr-and-thunderbird-from-mozilla-team-ppa-and-enable-unattended-upgrade)
+* [Switch from Snap Firefox and Thunderbird to Deb Firefox and Thunderbird from Mozilla Team PPA](#switch-from-snap-firefox-and-thunderbird-to-deb-firefox-and-thunderbird-from-mozilla-team-ppa)
+* [Switch from Snap Firefox and Thunderbird to Deb Firefox ESR and Thunderbird from Mozilla Team PPA](#switch-from-snap-firefox-and-thunderbird-to-deb-firefox-esr-and-thunderbird-from-mozilla-team-ppa)
 * [Install Deb Chromium from XtraDeb PPA and Prevent Snap Chromium From Being Installed](#install-deb-chromium-from-xtradeb-ppa-and-prevent-snap-chromium-from-being-installed)
 * [Install Deb Google Chrome from Google Chrome Stable PPA](#install-deb-google-chrome-from-google-chrome-ppa)
 * [Remove Snap and Prevent it From Being Installed for Ubuntu with KDE Plasma](#remove-snap-and-prevent-it-from-being-installed-for-ubuntu-with-kde-plasma)
-* [Switch from Snap Firefox to Deb Firefox from Mozilla Team PPA and Enable Unattended Upgrade](#switch-from-snap-firefox-to-deb-firefox-from-mozilla-team-ppa-and-enable-unattended-upgrade)
-* [Switch from Snap Firefox to Deb Firefox ESR from Mozilla Team PPA and Enable Unattended Upgrade](#switch-from-snap-firefox-to-deb-firefox-esr-from-mozilla-team-ppa-and-enable-unattended-upgrade)
-* [Switch from Snap Thunderbird to Deb Thunderbird from Mozilla Team PPA and Enable Unattended Upgrade](#switch-from-snap-thunderbird-to-deb-thunderbird-from-mozilla-team-ppa-and-enable-unattended-upgrade)
-* [Enable Unattended Upgrade for Packages from Mozilla Team PPA](#enable-unattended-upgrade-for-packages-from-mozilla-team-ppa)
-* [Switch from Deb Firefox from Mozilla Team PPA Back to Snap Firefox](#switch-from-deb-firefox-from-mozilla-team-ppa-back-to-snap-firefox)
-* [Switch from Deb Firefox ESR from Mozilla Team PPA Back to Snap Firefox](#switch-from-deb-firefox-esr-from-mozilla-team-ppa-back-to-snap-firefox)
-* [Switch Deb Thunderbird from Mozilla Team PPA Back to Snap Thunderbird](#switch-deb-thunderbird-from-mozilla-team-ppa-back-to-snap-thunderbird)
-* [Disable Unattended Upgrade for Packages from Mozilla Team PPA](#disable-unattended-upgrade-for-packages-from-mozilla-team-ppa)
+* [Switch from Snap Firefox to Deb Firefox from Mozilla Team PPA](#switch-from-snap-firefox-to-deb-firefox-from-mozilla-team-ppa)
+* [Switch from Snap Firefox to Deb Firefox ESR from Mozilla Team PPA](#switch-from-snap-firefox-to-deb-firefox-esr-from-mozilla-team-ppa)
+* [Switch from Snap Thunderbird to Deb Thunderbird from Mozilla Team PPA](#switch-from-snap-thunderbird-to-deb-thunderbird-from-mozilla-team-ppa)
+* [Disable Ubuntu Pro-related MOTD Messages and APT Hook](#disable-ubuntu-pro-related-motd-messages-and-apt-hook)
+* [Switch from Deb Firefox from Mozilla Team PPA to Snap Firefox](#switch-from-deb-firefox-from-mozilla-team-ppa-to-snap-firefox)
+* [Switch from Deb Firefox ESR from Mozilla Team PPA to Snap Firefox](#switch-from-deb-firefox-esr-from-mozilla-team-ppa-to-snap-firefox)
+* [Switch Deb Thunderbird from Mozilla Team PPA to Snap Thunderbird](#switch-deb-thunderbird-from-mozilla-team-ppa-to-snap-thunderbird)
 * [Remove Mozilla Team PPA](#remove-mozilla-team-ppa)
-* [Switch Deb Chromium from XtraDeb PPA Back to Snap Chromium](#switch-deb-chromium-from-xtradeb-ppa-back-to-snap-chromium)
+* [Switch Deb Chromium from XtraDeb PPA to Snap Chromium](#switch-deb-chromium-from-xtradeb-ppa-to-snap-chromium)
 * [Remove XtraDeb PPA](#remove-xtradeb-ppa)
 * [References](#references)
 * [My Related Repositories](#my-related-repositories)
@@ -37,7 +36,7 @@ sudo apparmor_parser -R /etc/apparmor.d/firefox
 ```
 to disable Firefox AppArmor profile.
 
-### Switch from Snap Firefox and Thunderbird to Deb Firefox and Thunderbird from Mozilla Team PPA and Enable Unattended Upgrade
+### Switch from Snap Firefox and Thunderbird to Deb Firefox and Thunderbird from Mozilla Team PPA
 
 ```
 sudo add-apt-repository ppa:mozillateam/ppa -y
@@ -75,10 +74,9 @@ sudo systemctl disable snap-thunderbird*.mount 2>/dev/null || true
 sudo snap remove thunderbird 2>/dev/null || true
 sudo apt install thunderbird --allow-downgrades -y
 sudo rm /var/lib/snapd/desktop/applications/thunderbird*.desktop 2>/dev/null || true
-echo "Unattended-Upgrade::Allowed-Origins:: \"LP-PPA-mozillateam:$(lsb_release -cs)\";" | sudo tee /etc/apt/apt.conf.d/51unattended-upgrades-mozilla >/dev/null
 ```
 
-### Switch from Snap Firefox and Thunderbird to Deb Firefox ESR and Thunderbird from Mozilla Team PPA, Enable Unattended Upgrade, and Fix Possible Fcitx5 not Working in Firefox from PPA
+### Switch from Snap Firefox and Thunderbird to Deb Firefox ESR and Thunderbird from Mozilla Team PPA
 
 ```
 sudo add-apt-repository ppa:mozillateam/ppa -y
@@ -118,7 +116,6 @@ sudo systemctl disable snap-thunderbird*.mount 2>/dev/null || true
 sudo snap remove thunderbird 2>/dev/null || true
 sudo apt install thunderbird --allow-downgrades -y
 sudo rm /var/lib/snapd/desktop/applications/thunderbird*.desktop 2>/dev/null || true
-echo "Unattended-Upgrade::Allowed-Origins:: \"LP-PPA-mozillateam:$(lsb_release -cs)\";" | sudo tee /etc/apt/apt.conf.d/51unattended-upgrades-mozilla >/dev/null
 ```
 
 ### Install Deb Chromium from XtraDeb PPA and Prevent Snap Chromium From Being Installed
@@ -222,7 +219,7 @@ sudo systemctl disable snapd.*
 sudo systemctl disable snap-*.mount 
 ```
 
-### Switch from Snap Firefox to Deb Firefox from Mozilla Team PPA and Enable Unattended Upgrade
+### Switch from Snap Firefox to Deb Firefox from Mozilla Team PPA
 
 ```
 sudo add-apt-repository ppa:mozillateam/ppa -y
@@ -245,7 +242,6 @@ sudo apparmor_parser -R /etc/apparmor.d/firefox
 sudo rm /var/lib/snapd/desktop/applications/firefox*.desktop 2>/dev/null || true
 sudo rm /var/lib/snapd/inhibit/firefox.lock 2>/dev/null || true
 rm -r snap/firefox 2>/dev/null || true
-echo "Unattended-Upgrade::Allowed-Origins:: \"LP-PPA-mozillateam:$(lsb_release -cs)\";" | sudo tee /etc/apt/apt.conf.d/51unattended-upgrades-mozilla >/dev/null
 ```
 
 ### Switch from Snap Firefox to Deb Firefox ESR from Mozilla Team PPA
@@ -273,7 +269,6 @@ sudo apparmor_parser -R /etc/apparmor.d/firefox
 sudo rm /var/lib/snapd/desktop/applications/firefox*.desktop 2>/dev/null || true
 sudo rm /var/lib/snapd/inhibit/firefox.lock 2>/dev/null || true
 rm -r snap/firefox 2>/dev/null || true
-echo "Unattended-Upgrade::Allowed-Origins:: \"LP-PPA-mozillateam:$(lsb_release -cs)\";" | sudo tee /etc/apt/apt.conf.d/51unattended-upgrades-mozilla >/dev/null
 ```
 
 ### Switch from Snap Thunderbird to Deb Thunderbird from Mozilla Team PPA
@@ -295,16 +290,19 @@ sudo systemctl disable snap-thunderbird*.mount 2>/dev/null || true
 sudo snap remove thunderbird 2>/dev/null || true
 sudo apt install thunderbird --allow-downgrades -y
 sudo rm /var/lib/snapd/desktop/applications/thunderbird*.desktop 2>/dev/null || true
-echo "Unattended-Upgrade::Allowed-Origins:: \"LP-PPA-mozillateam:$(lsb_release -cs)\";" | sudo tee /etc/apt/apt.conf.d/51unattended-upgrades-mozilla >/dev/null
 ```
 
-### Enable Unattended Upgrade for Packages from Mozilla Team PPA
+### Disable Ubuntu Pro-related MOTD Messages and APT Hook
 
 ```
-echo "Unattended-Upgrade::Allowed-Origins:: \"LP-PPA-mozillateam:$(lsb_release -cs)\";" | sudo tee /etc/apt/apt.conf.d/51unattended-upgrades-mozilla >/dev/null
+sudo mv /etc/apt/apt.conf.d/20apt-esm-hook.conf /etc/apt/apt.conf.d/20apt-esm-hook.conf.bak || true
+sudo touch /etc/apt/apt.conf.d/20apt-esm-hook.conf
+sudo touch /var/lib/update-notifier/hide-esm-in-motd
+sudo rm /etc/update-motd.d/88-esm-announce || true
+sudo rm /etc/update-motd.d/91-contract-ua-esm-status || true
 ```
 
-### Switch from Deb Firefox from Mozilla Team PPA Back to Snap Firefox
+### Switch from Deb Firefox from Mozilla Team PPA to Snap Firefox
 
 ```
 sudo rm -rf /etc/apt/preferences.d/firefox
@@ -312,7 +310,7 @@ sudo apt autoremove firefox --purge -y
 sudo snap install firefox
 ```
 
-### Switch from Deb Firefox ESR from Mozilla Team PPA Back to Snap Firefox
+### Switch from Deb Firefox ESR from Mozilla Team PPA to Snap Firefox
 
 ```
 sudo rm -rf /etc/apt/preferences.d/firefox
@@ -320,18 +318,12 @@ sudo apt autoremove firefox-esr --purge -y
 sudo snap install firefox
 ```
 
-### Switch Deb Thunderbird from Mozilla Team PPA Back to Snap Thunderbird
+### Switch Deb Thunderbird from Mozilla Team PPA to Snap Thunderbird
 
 ```
 sudo rm -rf /etc/apt/preferences.d/thunderbird
 sudo apt autoremove thunderbird --purge -y
 sudo snap install thunderbird
-```
-
-### Disable Unattended Upgrade for Packages from Mozilla Team PPA
-
-```
-sudo rm /etc/apt/apt.conf.d/51unattended-upgrades-mozilla
 ```
 
 ### Remove Mozilla Team PPA
@@ -340,7 +332,7 @@ sudo rm /etc/apt/apt.conf.d/51unattended-upgrades-mozilla
 sudo add-apt-repository -r ppa:mozillateam/ppa
 ```
 
-### Switch Deb Chromium from XtraDeb PPA Back to Snap Chromium
+### Switch Deb Chromium from XtraDeb PPA to Snap Chromium
 
 ```
 sudo rm -rf /etc/apt/preferences.d/chromium

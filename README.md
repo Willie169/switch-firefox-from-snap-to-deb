@@ -348,11 +348,13 @@ sudo add-apt-repository -r ppa:xtradeb/apps
 
 ### References
 
-- Archisman Panigrahi, igi, Organic Marble, eddygeek, Yogev Neumann, & OMG Ubuntu. (2024). How to install Firefox as a traditional deb package (without snap) in Ubuntu 22.04 or later versions? <https://askubuntu.com/questions/1399383/how-to-install-firefox-as-a-traditional-deb-package-without-snap-in-ubuntu-22>
-- Archisman Panigrahi & BeastOfCaerbannog. (2024). How to install Thunderbird as a traditional deb package without snap in Ubuntu 24.04 and later versions? <https://askubuntu.com/questions/1513445/how-to-install-thunderbird-as-a-traditional-deb-package-without-snap-in-ubuntu-2>
-- Mitsuya Shibata. (2023). \[ubuntu-jp:6617\] Re: PPA にある Firefox の deb パッケージでのみ fcitx5 で日本語入力ができない問題. <https://lists.ubuntu.com/archives/ubuntu-jp/2023-May/006616.html>
-- Schwarzer Kater. (2025). Kubuntu get rid of Snap. <https://gitlab.com/scripts94/kubuntu-get-rid-of-snap>
-- Darin et al. (2025). Firefox and Chromium snaps preventing apps and devices from working correctly. <https://bugs.launchpad.net/snapd/+bug/1972762>
+- Archisman Panigrahi, igi, Organic Marble, eddygeek, Yogev Neumann, & OMG Ubuntu. (2024). How to install Firefox as a traditional deb package (without snap) in Ubuntu 22.04 or later versions? ask Ubuntu. <https://askubuntu.com/questions/1399383/how-to-install-firefox-as-a-traditional-deb-package-without-snap-in-ubuntu-22>
+- Archisman Panigrahi & BeastOfCaerbannog. (2024). How to install Thunderbird as a traditional deb package without snap in Ubuntu 24.04 and later versions? ask Ubuntu. <https://askubuntu.com/questions/1513445/how-to-install-thunderbird-as-a-traditional-deb-package-without-snap-in-ubuntu-2>
+- Mitsuya Shibata. (2023). \[ubuntu-jp:6617\] Re: PPA にある Firefox の deb パッケージでのみ fcitx5 で日本語入力ができない問題. ubuntu mailing lists. <https://lists.ubuntu.com/archives/ubuntu-jp/2023-May/006616.html>
+- Schwarzer Kater. (2025). Kubuntu get rid of Snap. GitLab. <https://gitlab.com/scripts94/kubuntu-get-rid-of-snap>
+- Darin et al. (2025). Firefox and Chromium snaps preventing apps and devices from working correctly. Launchpad.net. <https://bugs.launchpad.net/snapd/+bug/1972762>
+- Ubuntu Pro. (n.d.). Ubuntu Pro-related MOTD messages. Ubuntu Pro. <https://documentation.ubuntu.com/pro-client/en/latest/explanations/motd_messages>
+- jfeilbach. (2024). Ubuntu 22.04 Annoyances. GitHub. <https://gist.github.com/jfeilbach/f4d0b19df82e04bea8f10cdd5945a4ff>
 
 ### My Related Repositories
 

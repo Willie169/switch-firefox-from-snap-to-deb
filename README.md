@@ -29,7 +29,7 @@ These scripts also solves potential issues of Fcitx5 on Firefox or Firefox ESR f
 
 You may want to re-configure launchers in your Desktop Environment.
 
-If any error occurs when opening Firefox, try running:
+If any error occurs when opening or using Firefox, notably the `Close Firefox: Firefox is already running, but is not responding. To use Firefox, you must first close the existing Firefox process, restart your device, or use a different profile.` pop-up, try running:
 ```
 sudo ln -sf /etc/apparmor.d/firefox /etc/apparmor.d/disable/
 sudo apparmor_parser -R /etc/apparmor.d/firefox

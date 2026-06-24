@@ -6,7 +6,6 @@ These scripts also solves potential issues of Fcitx5 on Firefox or Firefox ESR f
 
 ### Table of Contents
 
-* [After Switching](#after-switching)
 * [Switch from Snap Firefox and Thunderbird to Deb Firefox and Thunderbird from Mozilla Team PPA](#switch-from-snap-firefox-and-thunderbird-to-deb-firefox-and-thunderbird-from-mozilla-team-ppa)
 * [Switch from Snap Firefox and Thunderbird to Deb Firefox ESR and Thunderbird from Mozilla Team PPA](#switch-from-snap-firefox-and-thunderbird-to-deb-firefox-esr-and-thunderbird-from-mozilla-team-ppa)
 * [Install Deb Chromium from XtraDeb PPA and Prevent Snap Chromium From Being Installed](#install-deb-chromium-from-xtradeb-ppa-and-prevent-snap-chromium-from-being-installed)
@@ -22,19 +21,9 @@ These scripts also solves potential issues of Fcitx5 on Firefox or Firefox ESR f
 * [Remove Mozilla Team PPA](#remove-mozilla-team-ppa)
 * [Switch Deb Chromium from XtraDeb PPA to Snap Chromium](#switch-deb-chromium-from-xtradeb-ppa-to-snap-chromium)
 * [Remove XtraDeb PPA](#remove-xtradeb-ppa)
+* [Explanatio](#explanation)
 * [References](#references)
 * [My Related Repositories](#my-related-repositories)
-
-### After Switching
-
-You may want to re-configure launchers in your Desktop Environment.
-
-If any error occurs when opening or using Firefox, notably the `Close Firefox: Firefox is already running, but is not responding. To use Firefox, you must first close the existing Firefox process, restart your device, or use a different profile.` pop-up, try running:
-```
-sudo ln -sf /etc/apparmor.d/firefox /etc/apparmor.d/disable/
-sudo apparmor_parser -R /etc/apparmor.d/firefox
-```
-to disable Firefox AppArmor profile.
 
 ### Switch from Snap Firefox and Thunderbird to Deb Firefox and Thunderbird from Mozilla Team PPA
 
@@ -42,7 +31,7 @@ to disable Firefox AppArmor profile.
 sudo add-apt-repository ppa:mozillateam/ppa -y
 echo 'Package: firefox*
 Pin: release o=LP-PPA-mozillateam
-Pin-Priority: 990
+Pin-Priority: 1001
 
 Package: firefox*
 Pin: release o=Ubuntu
@@ -54,14 +43,29 @@ sudo systemctl disable var-snap-firefox-common-*.mount 2>/dev/null || true
 sudo systemctl disable snap-firefox*.mount 2>/dev/null || true
 sudo snap remove firefox 2>/dev/null || true
 sudo apt install firefox --allow-downgrades -y
-sudo ln -sf /etc/apparmor.d/firefox /etc/apparmor.d/disable/
-sudo apparmor_parser -R /etc/apparmor.d/firefox
+sudo tee /etc/systemd/system/firefox-apparmor.service >/dev/null <<'EOF'
+[Unit]
+Description=Firefox Apparmor Disable
+PartOf=apparmor.service
+After=apparmor.service
+
+[Service]
+Type=oneshot
+User=root
+ExecStart=bash -c 'ln -sf /etc/apparmor.d/firefox /etc/apparmor.d/disable/ || true; sudo apparmor_parser -R /etc/apparmor.d/firefox || true'
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
+EOF
+sudo systemctl daemon-reload
+sudo systemctl enable --now firefox-apparmor.service
 sudo rm /var/lib/snapd/desktop/applications/firefox*.desktop 2>/dev/null || true
 sudo rm /var/lib/snapd/inhibit/firefox.lock 2>/dev/null || true
 rm -r snap/firefox 2>/dev/null || true
 echo 'Package: thunderbird*
 Pin: release o=LP-PPA-mozillateam
-Pin-Priority: 990
+Pin-Priority: 1001
 
 Package: thunderbird*
 Pin: release o=Ubuntu
@@ -82,7 +86,7 @@ sudo rm /var/lib/snapd/desktop/applications/thunderbird*.desktop 2>/dev/null || 
 sudo add-apt-repository ppa:mozillateam/ppa -y
 echo 'Package: firefox*
 Pin: release o=LP-PPA-mozillateam
-Pin-Priority: 990
+Pin-Priority: 1001
 
 Package: firefox*
 Pin: release o=Ubuntu
@@ -96,14 +100,29 @@ sudo snap remove firefox 2>/dev/null || true
 sudo apt install firefox --allow-downgrades -y
 sudo apt autoremove firefox --purge -y  </dev/null 2>/dev/null || true
 sudo apt install firefox-esr --allow-downgrades -y
-sudo ln -sf /etc/apparmor.d/firefox /etc/apparmor.d/disable/
-sudo apparmor_parser -R /etc/apparmor.d/firefox
+sudo tee /etc/systemd/system/firefox-apparmor.service >/dev/null <<'EOF'
+[Unit]
+Description=Firefox Apparmor Disable
+PartOf=apparmor.service
+After=apparmor.service
+
+[Service]
+Type=oneshot
+User=root
+ExecStart=bash -c 'ln -sf /etc/apparmor.d/firefox /etc/apparmor.d/disable/ || true; sudo apparmor_parser -R /etc/apparmor.d/firefox || true'
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
+EOF
+sudo systemctl daemon-reload
+sudo systemctl enable --now firefox-apparmor.service
 sudo rm /var/lib/snapd/desktop/applications/firefox*.desktop 2>/dev/null || true
 sudo rm /var/lib/snapd/inhibit/firefox.lock 2>/dev/null || true
 rm -r snap/firefox 2>/dev/null || true
 echo 'Package: thunderbird*
 Pin: release o=LP-PPA-mozillateam
-Pin-Priority: 990
+Pin-Priority: 1001
 
 Package: thunderbird*
 Pin: release o=Ubuntu
@@ -124,7 +143,7 @@ sudo rm /var/lib/snapd/desktop/applications/thunderbird*.desktop 2>/dev/null || 
 sudo add-apt-repository ppa:xtradeb/apps -y
 echo 'Package: chromium*
 Pin: release o=LP-PPA-xtradeb-apps
-Pin-Priority: 990
+Pin-Priority: 1001
 
 Package: chromium*
 Pin: release o=Ubuntu
@@ -225,7 +244,7 @@ sudo systemctl disable snap-*.mount
 sudo add-apt-repository ppa:mozillateam/ppa -y
 echo 'Package: firefox*
 Pin: release o=LP-PPA-mozillateam
-Pin-Priority: 990
+Pin-Priority: 1001
 
 Package: firefox*
 Pin: release o=Ubuntu
@@ -237,8 +256,23 @@ sudo systemctl disable var-snap-firefox-common-*.mount 2>/dev/null || true
 sudo systemctl disable snap-firefox*.mount 2>/dev/null || true
 sudo snap remove firefox 2>/dev/null || true
 sudo apt install firefox --allow-downgrades -y
-sudo ln -sf /etc/apparmor.d/firefox /etc/apparmor.d/disable/
-sudo apparmor_parser -R /etc/apparmor.d/firefox
+sudo tee /etc/systemd/system/firefox-apparmor.service >/dev/null <<'EOF'
+[Unit]
+Description=Firefox Apparmor Disable
+PartOf=apparmor.service
+After=apparmor.service
+
+[Service]
+Type=oneshot
+User=root
+ExecStart=bash -c 'ln -sf /etc/apparmor.d/firefox /etc/apparmor.d/disable/ || true; sudo apparmor_parser -R /etc/apparmor.d/firefox || true'
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
+EOF
+sudo systemctl daemon-reload
+sudo systemctl enable --now firefox-apparmor.service
 sudo rm /var/lib/snapd/desktop/applications/firefox*.desktop 2>/dev/null || true
 sudo rm /var/lib/snapd/inhibit/firefox.lock 2>/dev/null || true
 rm -r snap/firefox 2>/dev/null || true
@@ -250,7 +284,7 @@ rm -r snap/firefox 2>/dev/null || true
 sudo add-apt-repository ppa:mozillateam/ppa -y
 echo 'Package: firefox*
 Pin: release o=LP-PPA-mozillateam
-Pin-Priority: 990
+Pin-Priority: 1001
 
 Package: firefox*
 Pin: release o=Ubuntu
@@ -264,8 +298,23 @@ sudo snap remove firefox 2>/dev/null || true
 sudo apt install firefox --allow-downgrades -y
 sudo apt autoremove firefox --purge -y 2>/dev/null || true
 sudo apt install firefox-esr --allow-downgrades -y
-sudo ln -sf /etc/apparmor.d/firefox /etc/apparmor.d/disable/
-sudo apparmor_parser -R /etc/apparmor.d/firefox
+sudo tee /etc/systemd/system/firefox-apparmor.service >/dev/null <<'EOF'
+[Unit]
+Description=Firefox Apparmor Disable
+PartOf=apparmor.service
+After=apparmor.service
+
+[Service]
+Type=oneshot
+User=root
+ExecStart=bash -c 'ln -sf /etc/apparmor.d/firefox /etc/apparmor.d/disable/ || true; sudo apparmor_parser -R /etc/apparmor.d/firefox || true'
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
+EOF
+sudo systemctl daemon-reload
+sudo systemctl enable --now firefox-apparmor.service
 sudo rm /var/lib/snapd/desktop/applications/firefox*.desktop 2>/dev/null || true
 sudo rm /var/lib/snapd/inhibit/firefox.lock 2>/dev/null || true
 rm -r snap/firefox 2>/dev/null || true
@@ -277,7 +326,7 @@ rm -r snap/firefox 2>/dev/null || true
 sudo add-apt-repository ppa:mozillateam/ppa -y
 echo 'Package: thunderbird*
 Pin: release o=LP-PPA-mozillateam
-Pin-Priority: 990
+Pin-Priority: 1001
 
 Package: thunderbird*
 Pin: release o=Ubuntu
@@ -344,6 +393,31 @@ sudo snap install chromium
 
 ```
 sudo add-apt-repository -r ppa:xtradeb/apps
+```
+
+### Explanation
+
+`Pin-Priority: 1001` causes a version to be installed even if this constitutes a downgrade of the package. `Pin-Priority: -1` prevents the version from being installed.
+
+The following service is to mitigate the `Close Firefox: Firefox is already running, but is not responding. To use Firefox, you must first close the existing Firefox process, restart your device, or use a different profile.` error pop-up and Fcitx5 not working in Firefox.
+```
+sudo tee /etc/systemd/system/firefox-apparmor.service >/dev/null <<'EOF'
+[Unit]
+Description=Firefox Apparmor Disable
+PartOf=apparmor.service
+After=apparmor.service
+
+[Service]
+Type=oneshot
+User=root
+ExecStart=bash -c 'ln -sf /etc/apparmor.d/firefox /etc/apparmor.d/disable/ || true; sudo apparmor_parser -R /etc/apparmor.d/firefox || true'
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
+EOF
+sudo systemctl daemon-reload
+sudo systemctl enable --now firefox-apparmor.service
 ```
 
 ### References

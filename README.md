@@ -21,7 +21,7 @@ These scripts also solves potential issues of Fcitx5 on Firefox or Firefox ESR f
 * [Remove Mozilla Team PPA](#remove-mozilla-team-ppa)
 * [Switch Deb Chromium from XtraDeb PPA to Snap Chromium](#switch-deb-chromium-from-xtradeb-ppa-to-snap-chromium)
 * [Remove XtraDeb PPA](#remove-xtradeb-ppa)
-* [Explanatio](#explanation)
+* [Explanation](#explanation)
 * [References](#references)
 * [My Related Repositories](#my-related-repositories)
 

@@ -2,7 +2,7 @@
 
 Scripts to switch Firefox and Thunderbird from Snap to Deb version from Mozilla Team PPA, remove Snap and prevent it from being installed, install Deb Chromium from XtraDeb PPA and prevent Snap Chromium from being installed, install Google Chrome from Google Chrome PPA, and disable Ubuntu Pro-related MOTD messages and APT hook.
 
-These scripts also solves potential issues of Fcitx5 on Firefox or Firefox ESR from Mozilla Team PPA. For Firefox and Thunderbird, either [Switch from Snap Firefox and Thunderbird to Deb Firefox and Thunderbird from Mozilla Team PPA](#switch-from-snap-firefox-and-thunderbird-to-deb-firefox-and-thunderbird-from-mozilla-team-ppa) or [Switch from Snap Firefox and Thunderbird to Deb Firefox ESR and Thunderbird from Mozilla Team PPA](#switch-from-snap-firefox-and-thunderbird-to-deb-firefox-esr-and-thunderbird-from-mozilla-team-ppa) is recommended. For Linux Mint user, it is recommended to install from  their [official repository](http://packages.linuxmint.com) instead of using scripts here.
+These scripts also solves potential issues of Fcitx5 on Firefox or Firefox ESR from Mozilla Team PPA. For Firefox and Thunderbird, either [Switch from Snap Firefox and Thunderbird to Deb Firefox and Thunderbird from Mozilla Team PPA](#switch-from-snap-firefox-and-thunderbird-to-deb-firefox-and-thunderbird-from-mozilla-team-ppa) or [Switch from Snap Firefox and Thunderbird to Deb Firefox ESR and Thunderbird from Mozilla Team PPA](#switch-from-snap-firefox-and-thunderbird-to-deb-firefox-esr-and-thunderbird-from-mozilla-team-ppa) is recommended. For Linux Mint user, it is recommended to install from their [official repository](http://packages.linuxmint.com) instead of using scripts here.
 
 ### Table of Contents
 
@@ -79,6 +79,7 @@ sudo snap remove thunderbird 2>/dev/null || true
 sudo apt install thunderbird --allow-downgrades -y
 sudo rm /var/lib/snapd/desktop/applications/thunderbird*.desktop 2>/dev/null || true
 ```
+If the `Close Firefox: Firefox is already running, but is not responding. To use Firefox, you must first close the existing Firefox process, restart your device, or use a different profile.` error pop-up shows, run `sudo systemctl restart firefox-apparmor.service` to solve it.
 
 ### Switch from Snap Firefox and Thunderbird to Deb Firefox ESR and Thunderbird from Mozilla Team PPA
 
@@ -136,6 +137,7 @@ sudo snap remove thunderbird 2>/dev/null || true
 sudo apt install thunderbird --allow-downgrades -y
 sudo rm /var/lib/snapd/desktop/applications/thunderbird*.desktop 2>/dev/null || true
 ```
+If the `Close Firefox: Firefox is already running, but is not responding. To use Firefox, you must first close the existing Firefox process, restart your device, or use a different profile.` error pop-up shows, run `sudo systemctl restart firefox-apparmor.service` to solve it.
 
 ### Install Deb Chromium from XtraDeb PPA and Prevent Snap Chromium From Being Installed
 
@@ -277,6 +279,7 @@ sudo rm /var/lib/snapd/desktop/applications/firefox*.desktop 2>/dev/null || true
 sudo rm /var/lib/snapd/inhibit/firefox.lock 2>/dev/null || true
 rm -r snap/firefox 2>/dev/null || true
 ```
+If the `Close Firefox: Firefox is already running, but is not responding. To use Firefox, you must first close the existing Firefox process, restart your device, or use a different profile.` error pop-up shows, run `sudo systemctl restart firefox-apparmor.service` to solve it.
 
 ### Switch from Snap Firefox to Deb Firefox ESR from Mozilla Team PPA
 
@@ -319,6 +322,7 @@ sudo rm /var/lib/snapd/desktop/applications/firefox*.desktop 2>/dev/null || true
 sudo rm /var/lib/snapd/inhibit/firefox.lock 2>/dev/null || true
 rm -r snap/firefox 2>/dev/null || true
 ```
+If the `Close Firefox: Firefox is already running, but is not responding. To use Firefox, you must first close the existing Firefox process, restart your device, or use a different profile.` error pop-up shows, run `sudo systemctl restart firefox-apparmor.service` to solve it.
 
 ### Switch from Snap Thunderbird to Deb Thunderbird from Mozilla Team PPA
 

@@ -438,5 +438,5 @@ sudo systemctl enable --now firefox-apparmor.service
 
 ### My Related Repositories
 
-* [**ubuntu-setup-with-vnc-and-gpu**](https://github.com/Willie169/ubuntu-setup-with-vnc-and-gpu)
+* [**ubuntu-setup**](https://github.com/Willie169/ubuntu-setup)
 * [**dual-boot-windows-linux-and-recovery**](https://github.com/Willie169/dual-boot-windows-linux-and-recovery)
